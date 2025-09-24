@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true
+    },
+    "renpyWarp.sdkPath": "c:\\Program Files\\Renpy-8.4.1-sdk"
+}

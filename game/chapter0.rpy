@@ -1,0 +1,3 @@
+label prologue:
+    "Prologue"
+    return
