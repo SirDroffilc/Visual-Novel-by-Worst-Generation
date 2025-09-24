@@ -9,8 +9,12 @@ default puzzle_evt_flag = False
 default pieces_count = 0
 default all_pieces_obtained = False
 
+    
 default room101_pieces_taken = False
 default room103_pieces_taken = False
 default room104_pieces_taken = False
+
+default puzzle_pieces_clicked = False
+default back_btn_clicked = False
 
 # ===== Chapter 1 Variables =====>

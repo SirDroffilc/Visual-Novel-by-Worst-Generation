@@ -11,45 +11,69 @@ label chapter1:
     haru "The key must be in one of these rooms."
     hide haru with dissolve
 
+
     while True:
         if pieces_count == 9 and not all_pieces_obtained:
             $ all_pieces_obtained = True
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
-            
+        
+        call set_back_btn_clicked(False)
+        call set_puzzle_pieces_clicked(False)
         show screen hallway1_buttons
     
         pause
 
     jump chapter2
 
+label set_puzzle_pieces_clicked(state):
+    $ puzzle_pieces_clicked = state
+    return
+
+label set_back_btn_clicked(state):
+    $ back_btn_clicked = state
+    return
+
 label room101:
     scene bg darkroom with fade
+
     haru "This is where I woke up."
     haru "Nothing's here—just a bed and a table with a bunch of random junk on top of it."
 
-    if not room101_pieces_taken:
-        if puzzle_evt_flag:
-            haru "Found the pieces."
+    while not back_btn_clicked:
+        show screen back_btn
+        if not room101_pieces_taken:
+            show screen puzzle_pieces(0.1, 0.8)
 
-        elif pieces_count <= 0:
-            haru "Are these puzzle pieces?"
-
-        else:
-            haru "Again? What are these pieces for?"
-
-        menu: 
-            "Take the pieces?"
-            "Yes":
-                haru "I'll take them."
-                $ pieces_count += 3
-                $ room101_pieces_taken = True
+            if puzzle_pieces_clicked:
+                show screen puzzle_pieces(0.8, 0.5, 0.4)
                 if puzzle_evt_flag:
-                    haru "I got [pieces_count] of these pieces now."
-                    show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
-            "No":
-                haru "I'll leave them here."
+                    haru "Found the pieces."
 
+                elif pieces_count <= 0:
+                    haru "Are these puzzle pieces?"
+
+                else:
+                    haru "Again? What are these pieces for?"
+
+                menu: 
+                    "Take the pieces?"
+                    "Yes":
+                        haru "I'll take them."
+                        $ pieces_count += 3
+                        $ room101_pieces_taken = True
+    
+                        if puzzle_evt_flag:
+                            haru "I got [pieces_count] of these pieces now."
+                            show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
+                    "No":
+                        haru "I'll leave them here."
+                        hide screen puzzle_pieces_zoomed
+
+        pause
+    
+    hide back_btn
+    hide screen puzzle_pieces
     scene bg hallway with fade
 
     return
@@ -57,7 +81,16 @@ label room101:
 label room102:
     if all_pieces_obtained:
         jump puzzle_mini_game
+
     scene bg darkroom with fade
+
+    if puzzle_evt_flag:
+        show haru default at left with dissolve
+        haru "I have to look for the puzzle pieces."
+        haru "...the other rooms, maybe?"
+        scene bg hallway with fade
+        return
+        
     show haru default at left with dissolve
     haru "This place is packed."
     haru "...it's like someone dumped an entire storage unit in here."
@@ -85,30 +118,41 @@ label room103:
     haru "This room looks like an office… maybe for some kind of company."
     haru "...It doesn't feel like anyone's worked here in years."
     
-    if not room103_pieces_taken:
-        haru "...Wait, what's that under the chair?"
+    while not back_btn_clicked:
+        show screen back_btn
+        if not room103_pieces_taken:
+            show screen puzzle_pieces(0.1, 0.8)
 
-        if puzzle_evt_flag:
-            haru "Found them."
-
-        elif pieces_count <= 0:
-            haru "Are these puzzle pieces?"
-
-        else:
-            haru "Another set of pieces? What are these for?"
-
-        menu: 
-            "Take the pieces?"
-            "Yes":
-                haru "Yeah, I better take these pieces."
-                $ pieces_count += 2
-                $ room103_pieces_taken = True
+            if puzzle_pieces_clicked:
+                haru "...Wait, what's that under the chair?"
+                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
                 if puzzle_evt_flag:
-                    haru "I got [pieces_count] of them now."
-                    show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
-            "No":
-                haru "I'll leave them here."
+                    haru "Found them."
+
+                elif pieces_count <= 0:
+                    haru "Are these puzzle pieces?"
+
+                else:
+                    haru "Another set of pieces? What are these for?"
+
+                menu: 
+                    "Take the pieces?"
+                    "Yes":
+                        haru "Yeah, I better take these pieces."
+                        $ pieces_count += 2
+                        $ room103_pieces_taken = True
     
+                        if puzzle_evt_flag:
+                            haru "I got [pieces_count] of them now."
+                            show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
+                    "No":
+                        haru "I'll leave them here."
+                        hide screen puzzle_pieces_zoomed
+
+        pause
+    
+    hide back_btn
+    hide screen puzzle_pieces
     scene bg hallway with fade    
     return
 
@@ -142,6 +186,7 @@ label room104:
                     show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
             "No":
                 haru "I'll leave them here."
+                hide screen puzzle_pieces_zoomed
 
     
     scene bg hallway with fade
@@ -158,7 +203,11 @@ label puzzle_mini_game:
     return
 
 label mainrm1:
-    scene bg darkroom with fade
-    "Main Room 1"
-    scene bg hallway with fade
+    if puzzle_evt_flag:
+        if all_pieces_obtained:
+            haru "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
+        else:
+            haru "It's locked. Maybe I should solve the puzzle first."
+    else:
+        haru "It's locked. I have to find the key."
     return

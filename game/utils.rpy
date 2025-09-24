@@ -4,3 +4,5 @@ init python:
     renpy.music.set_volume(0.7, channel="sound")
     renpy.music.set_volume(0.7, channel="voice")
     renpy.music.set_volume(0.7, channel="movie")
+
+    
