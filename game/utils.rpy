@@ -21,3 +21,12 @@ label set_keycard_clicked(state):
     return
 
 # ===== Chapter 1 Functions =====>
+
+
+#  <===== Chapter 2 Functions =====
+
+label set_ladder_clicked(state):
+    $ ladder_clicked = state
+    return
+
+# ===== Chapter 2 Functions =====>

@@ -39,9 +39,10 @@ label f1_p1:
     return
 
 label f1_p2:
-
-    scene bg f1p2 with fade
-    
+    if not from_main_room_locked:
+        scene bg f1p2 with fade
+        
+    $ from_main_room_locked = False
     while True:
         if pieces_count == 9 and not all_pieces_obtained:
             $ all_pieces_obtained = True
@@ -281,6 +282,8 @@ label puzzle_mini_game:
 
 label main_room1:
     if not main_key1_acquired:
+        $ from_main_room_locked = True
+        "door locked sfx"
         if puzzle_evt_flag:
             if all_pieces_obtained:
                 ethan "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
@@ -288,7 +291,7 @@ label main_room1:
                 ethan "It's locked. Maybe I should solve the puzzle first."
         else:
             ethan "It's locked. I have to find the key."
-
+        window hide
         jump f1_p2
 
     if not future_travel_done:
