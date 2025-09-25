@@ -2,43 +2,99 @@ label chapter1:
     scene bg hallway with fade
 
     show screen chapter_title_text("Chapter 1: Shadows Ahead")
-
     pause 3.0
-
     hide screen chapter_title_text
     
     show haru default at left with dissolve
-    haru "The key must be in one of these rooms."
+    ethan "The key must be in one of these rooms."
     hide haru with dissolve
 
+    jump f1_p1
 
+label elevator1:
+    scene black with fade
+    if not key_card1_acquired:
+        "Access Denied. Key Card Required."
+        ethan "I need the Key Card."
+    
+    else:
+        "Elevator door opening..."
+        jump chapter2
+
+label f1_p1:
+    scene bg f1p1 with fade
+    
     while True:
         if pieces_count == 9 and not all_pieces_obtained:
             $ all_pieces_obtained = True
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
-        
+
         call set_back_btn_clicked(False)
         call set_puzzle_pieces_clicked(False)
-        show screen hallway1_buttons
-    
+
+        show screen f1_p1_buttons
         pause
 
-    jump chapter2
-
-label set_puzzle_pieces_clicked(state):
-    $ puzzle_pieces_clicked = state
     return
 
-label set_back_btn_clicked(state):
-    $ back_btn_clicked = state
+label f1_p2:
+
+    scene bg f1p2 with fade
+    
+    while True:
+        if pieces_count == 9 and not all_pieces_obtained:
+            $ all_pieces_obtained = True
+            call screen objective_text(chap1_objective_go_puzzle_room)
+            show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
+
+        call set_back_btn_clicked(False)
+        call set_puzzle_pieces_clicked(False)
+
+        show screen f1_p2_buttons
+        pause
+
+    return
+
+label f1_p3:
+    scene bg f1p3 with fade
+    
+    while True:
+        if pieces_count == 9 and not all_pieces_obtained:
+            $ all_pieces_obtained = True
+            call screen objective_text(chap1_objective_go_puzzle_room)
+            show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
+
+        call set_back_btn_clicked(False)
+        call set_puzzle_pieces_clicked(False)
+
+        show screen f1_p3_buttons
+        pause
+
+    return
+
+label f1_p4:
+    scene bg f1p4 with fade
+    
+    while True:
+        if pieces_count == 9 and not all_pieces_obtained:
+            $ all_pieces_obtained = True
+            call screen objective_text(chap1_objective_go_puzzle_room)
+            show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
+
+        call set_back_btn_clicked(False)
+        call set_puzzle_pieces_clicked(False)
+
+        show screen f1_p4_buttons
+        pause
+
     return
 
 label room101:
     scene bg darkroom with fade
 
-    haru "This is where I woke up."
-    haru "Nothing's here—just a bed and a table with a bunch of random junk on top of it."
+    ethan "This is where I woke up."
+    ethan "Nothing's here—just a bed and a table with a bunch of random junk on top of it."
 
     while not back_btn_clicked:
         show screen back_btn
@@ -46,37 +102,38 @@ label room101:
             show screen puzzle_pieces(0.1, 0.8)
 
             if puzzle_pieces_clicked:
-                show screen puzzle_pieces(0.8, 0.5, 0.4)
+                hide screen puzzle_pieces
+                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
                 if puzzle_evt_flag:
-                    haru "Found the pieces."
+                    ethan "Found the pieces."
 
                 elif pieces_count <= 0:
-                    haru "Are these puzzle pieces?"
+                    ethan "Are these puzzle pieces?"
 
                 else:
-                    haru "Again? What are these pieces for?"
+                    ethan "Again? What are these pieces for?"
 
                 menu: 
                     "Take the pieces?"
                     "Yes":
-                        haru "I'll take them."
+                        ethan "I'll take them."
                         $ pieces_count += 3
                         $ room101_pieces_taken = True
     
                         if puzzle_evt_flag:
-                            haru "I got [pieces_count] of these pieces now."
+                            ethan "I got [pieces_count] of these pieces now."
                             show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
                     "No":
-                        haru "I'll leave them here."
+                        ethan "I'll leave them here."
                         hide screen puzzle_pieces_zoomed
 
         pause
     
     hide back_btn
     hide screen puzzle_pieces
-    scene bg hallway with fade
-
-    return
+    hide screen puzzle_pieces_zoomed
+    
+    jump f1_p1
 
 label room102:
     if all_pieces_obtained:
@@ -86,37 +143,37 @@ label room102:
 
     if puzzle_evt_flag:
         show haru default at left with dissolve
-        haru "I have to look for the puzzle pieces."
-        haru "...the other rooms, maybe?"
-        scene bg hallway with fade
-        return
-        
-    show haru default at left with dissolve
-    haru "This place is packed."
-    haru "...it's like someone dumped an entire storage unit in here."
-    haru "Where do I even start looking?"
-    haru "Wait... something's written on the wall."
-    haru "\"Assemble the pieces\"?"
+        ethan "I have to look for the puzzle pieces."
+        ethan "...the other rooms, maybe?"
+    
+    else:
+        show haru default at left with dissolve
+        ethan "This place is packed."
+        ethan "...it's like someone dumped an entire storage unit in here."
+        ethan "Where do I even start looking?"
+        ethan "Wait... something's written on the wall."
+        ethan "\"Assemble the pieces\"?"
 
-    call screen objective_text(chap1_objective_puzzle_evt)
-    $ puzzle_evt_flag = True
+        call screen objective_text(chap1_objective_puzzle_evt)
+        $ puzzle_evt_flag = True
 
-    show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
+        show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
 
-    show haru angry
-    haru "A jigsaw puzzle? Seriously?"
-    show haru default
-    haru "Ugh, but it's the only lead I've got."
-    haru "...fine."
-
-    scene bg hallway with fade
-    return
+        ethan "A jigsaw puzzle? Seriously?"
+        ethan "Ugh, but it's the only lead I've got."
+        ethan "...fine."
+    
+    while not back_btn_clicked:
+        show screen back_btn
+        pause
+    
+    jump f1_p1
 
 label room103:
     scene bg darkroom with fade
 
-    haru "This room looks like an office… maybe for some kind of company."
-    haru "...It doesn't feel like anyone's worked here in years."
+    ethan "This room looks like an office… maybe for some kind of company."
+    ethan "...It doesn't feel like anyone's worked here in years."
     
     while not back_btn_clicked:
         show screen back_btn
@@ -124,90 +181,169 @@ label room103:
             show screen puzzle_pieces(0.1, 0.8)
 
             if puzzle_pieces_clicked:
-                haru "...Wait, what's that under the chair?"
+                ethan "...Wait, what's that under the chair?"
+                hide screen puzzle_pieces
                 show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
                 if puzzle_evt_flag:
-                    haru "Found them."
+                    ethan "Found them."
 
                 elif pieces_count <= 0:
-                    haru "Are these puzzle pieces?"
+                    ethan "Are these puzzle pieces?"
 
                 else:
-                    haru "Another set of pieces? What are these for?"
+                    ethan "Another set of pieces? What are these for?"
 
                 menu: 
                     "Take the pieces?"
                     "Yes":
-                        haru "Yeah, I better take these pieces."
+                        ethan "Yeah, I better take these pieces."
                         $ pieces_count += 2
                         $ room103_pieces_taken = True
     
                         if puzzle_evt_flag:
-                            haru "I got [pieces_count] of them now."
+                            ethan "I got [pieces_count] of them now."
                             show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
                     "No":
-                        haru "I'll leave them here."
+                        ethan "I'll leave them here."
                         hide screen puzzle_pieces_zoomed
 
         pause
     
     hide back_btn
     hide screen puzzle_pieces
-    scene bg hallway with fade    
-    return
+    hide screen puzzle_pieces_zoomed
+    
+    jump f1_p3
 
 label room104:
     scene bg darkroom with fade
 
-    haru "Ugh, what's that smell?"
-    haru "It's like a mix of dust, dirty laundry, and… rotten food left out for weeks."
-    haru "This whole place feels like a garbage dump, not a bedroom."
+    ethan "Ugh, what's that smell?"
+    ethan "It's like a mix of dust, dirty laundry, and… rotten food left out for weeks."
+    ethan "This whole place feels like a garbage dump, not a bedroom."
 
-    if not room104_pieces_taken:
-        haru "...Wait, is that—on the bed?"
+    while not back_btn_clicked:
+        show screen back_btn
+        if not room104_pieces_taken:
+            show screen puzzle_pieces(0.1, 0.8)
 
-        if puzzle_evt_flag:
-            haru "Oh, there they are. Figures."
+            if puzzle_pieces_clicked:
+                ethan "...Wait, is that—on the bed?"
+                hide screen puzzle_pieces
+                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
 
-        elif pieces_count <= 0:
-            haru "Are these puzzle pieces?"
-
-        else:
-            haru "What's with all these puzzle pieces?"
-
-        menu: 
-            "Take the pieces?"
-            "Yes":
-                haru "I'll take them."
-                $ pieces_count += 4
-                $ room104_pieces_taken = True
                 if puzzle_evt_flag:
-                    haru "I got [pieces_count] of these pieces now."
-                    show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
-            "No":
-                haru "I'll leave them here."
-                hide screen puzzle_pieces_zoomed
+                    ethan "Oh, the pieces! There they are."
 
-    
-    scene bg hallway with fade
-    return
+                elif pieces_count <= 0:
+                    ethan "Are these puzzle pieces?"
+
+                else:
+                    ethan "What's with all these puzzle pieces?"
+
+                menu: 
+                    "Take the pieces?"
+                    "Yes":
+                        ethan "I'll take them."
+                        $ pieces_count += 4
+                        $ room104_pieces_taken = True
+                        if puzzle_evt_flag:
+                            ethan "I got [pieces_count] of these pieces now."
+                            show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
+                    "No":
+                        ethan "I'll leave them here."
+                        hide screen puzzle_pieces_zoomed
+        
+        pause
+
+    hide back_btn
+    hide screen puzzle_pieces
+    hide screen puzzle_pieces_zoomed
+    jump f1_p4
 
 label puzzle_mini_game:
     scene bg darkroom with fade
 
+    if main_key1_acquired:
+        ethan "I already got the Main Key."
+        jump f1_p1
+
     "PUZZLE MINI GAME"
     "DRAG DRAG DROP"
 
-    scene bg hallway with fade
+    "Main Key acquired."
+    
+    call screen objective_text(chap1_objective_go_main_room)
+    $ main_key1_acquired = True
+    show screen objective_text(chap1_objective_go_main_room, 0.98, 0.1)
+ 
+    jump f1_p1
 
-    return
-
-label mainrm1:
-    if puzzle_evt_flag:
-        if all_pieces_obtained:
-            haru "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
+label main_room1:
+    if not main_key1_acquired:
+        if puzzle_evt_flag:
+            if all_pieces_obtained:
+                ethan "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
+            else:
+                ethan "It's locked. Maybe I should solve the puzzle first."
         else:
-            haru "It's locked. Maybe I should solve the puzzle first."
-    else:
-        haru "It's locked. I have to find the key."
-    return
+            ethan "It's locked. I have to find the key."
+
+        jump f1_p2
+
+    if not future_travel_done:
+        scene bg darkroom with fade
+        ethan "A bunch of alcohol, corporate attire, and… a coffin?"
+        ethan "This is creepy."
+        ethan "Wait… is that the key card for the elevator?"
+        show screen f1_keycard
+        while not keycard_clicked:
+            "Take the Key Card"
+
+        ethan "Wha-What's happening? I-I feel... "
+        hide screen f1_keycard
+        hide screen objective_text
+        jump future_travel
+        
+    else: # future_travel is done
+        if key_card1_acquired:
+            scene bg darkroom with fade
+            "I already have the Key Card for the elevator. I better get out of here."
+            jump f1_p2
+    
+        scene bg darkroom with Fade(1.0, 1.0, 1.0, color="#fff")
+        ethan "Haaa... haaa..."
+        ethan "Thi-this is the room before."
+        ethan "I'm... back?"
+        ethan "Haa.. haa…"
+        ethan "Wh-what just happened to me?"
+        ethan "That was.. the worst."
+        ethan "Was that... really my future?"
+        ethan "No, no… I don't want that…"
+        ethan "I... I-I have to get out of this place."
+        
+        "Key Card Acquired"
+        $ key_card1_acquired = True
+        call screen objective_text(chap1_objective_go_elevator)
+        show screen objective_text(chap1_objective_go_elevator, 0.98, 0.1)
+
+        show screen back_btn
+        call set_back_btn_clicked(False)
+
+        while not back_btn_clicked:
+            pause
+
+        jump f1_p2
+
+label future_travel:
+    scene black with Fade(1.0, 1.0, 1.0, color="#fff")
+
+    "Time Travel Future"
+    "DRINKING ALCOHOL"
+    "NECKTIE STRANGLE"
+    "COFFIN FUNERAL"
+    "END"
+
+    $ future_travel_done = True
+
+    jump main_room1
