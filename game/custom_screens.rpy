@@ -241,6 +241,17 @@ screen f1_keycard:
 
 #  <===== Chapter 2 Screens =====
 screen f2_p1_buttons:
+    hbox:
+        xalign 0.5
+        yalign 0.85
+
+        imagebutton:
+            idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
+            hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
+            action [Hide("f2_p1_buttons"), Jump("elevator2")]
+
+        text "Go to elevator" xalign 0.0 yalign 0.5
+        
     hbox: # Enter Room 201
         xalign 0.2
         yalign 0.7
@@ -385,9 +396,46 @@ screen f2_p5_buttons:
         imagebutton:
             idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
-            action [Hide("f2_p5_buttons"), Call("room203")]
+            action [Hide("f2_p5_buttons"), Jump("room203")]
 
         text "Enter room" xalign 0.0 yalign 0.5
+
+    hbox: # Go forward
+        xalign 0.5
+        yalign 0.4
+        spacing 0
+
+        imagebutton:
+            idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
+            hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
+            action [Hide("f2_p5_buttons"), Jump("f2_p6")]
+
+        text "Go forward" xalign 0.0 yalign 0.5
+
+screen f2_p6_buttons:
+    hbox: # Go back
+        xalign 0.5
+        yalign 0.85
+        spacing 0
+
+        imagebutton:
+            idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
+            hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
+            action [Hide("f2_p6_buttons"), Call("set_back_btn_clicked", True)]
+
+        text "Go back" xalign 0.0 yalign 0.5
+
+    hbox: # Enter Main Room
+        xalign 0.5
+        yalign 0.4
+        spacing 0
+
+        imagebutton:
+            idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
+            hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
+            action [Hide("f2_p6_buttons"), Jump("main_room2")]
+
+        text "Enter Main Room" xalign 0.0 yalign 0.5
 
 screen ladder_inactive:
     imagebutton:
@@ -403,4 +451,12 @@ screen ladder_active:
         hover Transform("buttons/enter_room_button_hover.png", zoom=0.3)
         action Call("set_ladder_clicked", True)
 
+screen f2_keycard:
+    imagebutton:
+        xalign 0.8
+        yalign 0.5
+
+        idle Transform("buttons/enter_room_button_idle.png", zoom=0.5)
+        hover Transform("buttons/enter_room_button_hover.png", zoom=0.5)
+        action [Hide("f2_keycard"), Call("set_keycard_clicked", True)]
 # ===== Chapter 2 Screens =====>

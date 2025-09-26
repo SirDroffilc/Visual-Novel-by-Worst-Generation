@@ -1,20 +1,19 @@
 label chapter1:
-    scene bg hallway with fade
+    scene black with fade
 
     show screen chapter_title_text("Chapter 1: Shadows Ahead")
     pause 3.0
     hide screen chapter_title_text
-    
-    show haru default at left with dissolve
-    ethan "The key must be in one of these rooms."
-    hide haru with dissolve
+
+    call screen objective_text(chap0_objective_find_clues)
+    show screen objective_text(chap0_objective_find_clues, 0.98, 0.1)
 
     jump f1_p1
 
 label elevator1:
     scene black with fade
     if not key_card1_acquired:
-        "Access Denied. Key Card Required."
+        "Access Denied. F1 Key Card Required."
         ethan "I need the Key Card."
     
     else:
@@ -39,10 +38,10 @@ label f1_p1:
     return
 
 label f1_p2:
-    if not from_main_room_locked:
+    if not from_locked_room:
         scene bg f1p2 with fade
         
-    $ from_main_room_locked = False
+    $ from_locked_room = False
     while True:
         if pieces_count == 9 and not all_pieces_obtained:
             $ all_pieces_obtained = True
@@ -282,7 +281,7 @@ label puzzle_mini_game:
 
 label main_room1:
     if not main_key1_acquired:
-        $ from_main_room_locked = True
+        $ from_locked_room = True
         "door locked sfx"
         if puzzle_evt_flag:
             if all_pieces_obtained:

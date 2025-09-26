@@ -1,6 +1,4 @@
 ﻿label start:
-    "START"
-
-    jump chapter1
+    jump prologue
     
     return
