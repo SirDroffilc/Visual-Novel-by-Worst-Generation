@@ -140,17 +140,21 @@ style window:
 style namebox:
     xpos gui.name_xpos
     xanchor gui.name_xalign
-    xsize gui.namebox_width
-    ypos gui.name_ypos
-    ysize gui.namebox_height
+    xsize 320
+    ypos -30
+    ysize 110
+    left_padding 30
+    right_padding 30
+    top_padding 10
+    bottom_padding 10
 
     background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
     properties gui.text_properties("name", accent=True)
-    xalign gui.name_xalign
-    yalign 0.5
+    xalign 0.5
+    yalign 0
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
@@ -248,11 +252,11 @@ screen quick_menu():
 
             textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
+        #   textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+        #   textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
+        #   textbutton _("Q.Save") action QuickSave()
+        #   textbutton _("Q.Load") action QuickLoad()
             textbutton _("Prefs") action ShowMenu('preferences')
 
 
@@ -268,8 +272,10 @@ style quick_button is default
 style quick_button_text is button_text
 
 style quick_menu:
-    xalign 0.5
+    xalign 1.0
     yalign 1.0
+    xoffset -20
+    yoffset -10
 
 style quick_button:
     properties gui.button_properties("quick_button")
@@ -289,52 +295,88 @@ style quick_button_text:
 
 screen navigation():
 
-    vbox:
-        style_prefix "navigation"
+    # If we are on the main menu, show custom imagebuttons
+    if renpy.get_screen("main_menu"):
+        style_prefix "newnavigation"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+        # Title (not clickable)
+        imagebutton:
+            idle "images/UI_main_menu/title_idle.png"
+            hover "images/UI_main_menu/title_hover.png"
+            xpos 560
+            ypos 60
+            action NullAction()
 
-        spacing gui.navigation_spacing
+        # Start Game Button
+        imagebutton:
+            auto "images/UI_main_menu/start_%s.png"
+            xpos 96
+            ypos 290
+            action Start()
 
-        if main_menu:
+        # Load Game Button
+        imagebutton:
+            auto "images/UI_main_menu/load_%s.png"
+            xpos 47
+            ypos 568
+            action ShowMenu("load")
 
-            textbutton _("Start") action Start()
+        # Preferences Button
+        imagebutton:
+            auto "images/UI_main_menu/preferences_%s.png"
+            xpos 135
+            ypos 836
+            action ShowMenu("preferences")
 
-        else:
+        # About Button
+        imagebutton:
+            auto "images/UI_main_menu/about_%s.png"
+            xpos 1320
+            ypos 380
+            action ShowMenu("about")
+
+        # Help Button
+        imagebutton:
+            auto "images/UI_main_menu/help_%s.png"
+            xpos 1445
+            ypos 614
+            action ShowMenu("help")
+
+        # Quit Button
+        imagebutton:
+            auto "images/UI_main_menu/quit_%s.png"
+            xpos 1364
+            ypos 861
+            action Quit(confirm=True)
+
+    # Otherwise (load, prefs, about, etc) use the default vbox nav
+    else:
+        vbox:
+            style_prefix "navigation"
+            xpos gui.navigation_xpos
+            yalign 0.5
+            spacing gui.navigation_spacing
 
             textbutton _("History") action ShowMenu("history")
-
             textbutton _("Save") action ShowMenu("save")
+            textbutton _("Load") action ShowMenu("load")
+            textbutton _("Preferences") action ShowMenu("preferences")
 
-        textbutton _("Load") action ShowMenu("load")
+            if _in_replay:
+                textbutton _("End Replay") action EndReplay(confirm=True)
+            else:
+                textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+            textbutton _("About") action ShowMenu("about")
 
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
-
-        elif not main_menu:
-
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
-
-        if renpy.variant("pc"):
-
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
-
-
+            if renpy.variant("pc"):
+                textbutton _("Help") action ShowMenu("help")
+                textbutton _("Quit") action Quit(confirm=not main_menu)
+                
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
+style newnavigation_button is navigation_button
+style newnavigation_button_text is navigation_button_text
 
 style navigation_button:
     size_group "navigation"
@@ -356,6 +398,9 @@ screen main_menu():
     tag menu
 
     add gui.main_menu_background
+    add "gui/mainmenu/main_menu_eye_background.png"
+    add TrackCursor("gui/mainmenu/main_menu_eye.png", paramod=50, inverse=False)
+    add TrackCursor("gui/mainmenu/main_menu_MC.png", paramod=100, inverse=True) xpos -120 ypos 210
 
     ## This empty frame darkens the main menu.
     frame:
@@ -387,7 +432,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -1619,3 +1664,5 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+

@@ -22,7 +22,7 @@ label prologue:
     "walking to elevator mp4"
     "You tried to open the elevator."
     "Access Denied. F1 Key Card Required."
-
+#################
     show ethan default at left with dissolve
     ethan "I need to find this key card."
     scene bg f1p1 with fade
