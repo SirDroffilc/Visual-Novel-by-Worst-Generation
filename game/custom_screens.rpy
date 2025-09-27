@@ -521,5 +521,25 @@ screen f3_p2_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f3_p2_buttons"), Jump("main_room3")]
 
-        text "Enter room" xalign 0.0 yalign 0.5
+        text "Enter Main Room" xalign 0.0 yalign 0.5
+
+screen mini_game_start_btn:
+    imagebutton:
+        xalign 0.5
+        yalign 0.75
+
+        idle Transform("buttons/start_button.png", zoom=0.7)
+        hover Transform("buttons/start_button.png", zoom=0.75)
+
+        action [Hide("mini_game_start_btn"), Call("set_start_btn_clicked", True)]
+
+screen f3_keycard:
+    imagebutton:
+        xalign 0.8
+        yalign 0.5
+
+        idle Transform("buttons/enter_room_button_idle.png", zoom=0.5)
+        hover Transform("buttons/enter_room_button_hover.png", zoom=0.5)
+        action [Hide("f3_keycard"), Call("set_keycard_clicked", True)]
+
 # ===== Chapter 3 Screens =====>

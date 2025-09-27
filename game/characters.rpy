@@ -1,2 +1,5 @@
 define ethan = Character("Ethan")
 define noah = Character("Noah")
+define mom = Character("Mom")
+define dad = Character("Dad")
+define nathan = Character("Nathan")

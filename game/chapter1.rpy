@@ -1,5 +1,4 @@
 label chapter1:
-    "THIS IS A NEW BRANCH"
     scene black with fade
 
     show screen chapter_title_text("Chapter 1: Shadows Ahead")
@@ -91,11 +90,15 @@ label f1_p4:
 
     return
 
-label room101:
+label room101: # Empty Room (Starting Room)
     scene bg darkroom with fade
+    pause
 
+    show ethan default at left with dissolve
     ethan "This is where I woke up."
     ethan "Nothing's here—just a bed and a table with a bunch of random junk on top of it."
+    hide ethan with dissolve
+    window hide
 
     while not back_btn_clicked:
         show screen back_btn
@@ -136,33 +139,38 @@ label room101:
     
     jump f1_p1
 
-label room102:
+label room102: # Puzzle Room
     if all_pieces_obtained:
         jump puzzle_mini_game
 
     scene bg darkroom with fade
+    pause
 
     if puzzle_evt_flag:
-        show haru default at left with dissolve
+        show ethan default at left with dissolve
         ethan "I have to look for the puzzle pieces."
         ethan "...the other rooms, maybe?"
     
     else:
-        show haru default at left with dissolve
+        show ethan default at left with dissolve
         ethan "This place is packed."
         ethan "...it's like someone dumped an entire storage unit in here."
         ethan "Where do I even start looking?"
+        show ethan confused
         ethan "Wait... something's written on the wall."
         ethan "\"Assemble the pieces\"?"
-
+        hide ethan with dissolve
         call screen objective_text(chap1_objective_puzzle_evt)
+        show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
         $ puzzle_evt_flag = True
 
-        show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
-
+        show ethan confused at left
         ethan "A jigsaw puzzle? Seriously?"
+        show ethan smacked
         ethan "Ugh, but it's the only lead I've got."
         ethan "...fine."
+
+        hide ethan with dissolve
     
     while not back_btn_clicked:
         show screen back_btn
@@ -170,7 +178,7 @@ label room102:
     
     jump f1_p1
 
-label room103:
+label room103: # Office Room
     scene bg darkroom with fade
 
     ethan "This room looks like an office… maybe for some kind of company."
@@ -216,7 +224,7 @@ label room103:
     
     jump f1_p3
 
-label room104:
+label room104: # Messy Room
     scene bg darkroom with fade
 
     ethan "Ugh, what's that smell?"

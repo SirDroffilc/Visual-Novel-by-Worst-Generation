@@ -45,7 +45,7 @@ label chapter2:
     ethan "Don't you think it looks like Genesis? You know, the old studio we used to practice at?"
     noah "...Whoa. Now that you mention it—Yeah. Damn, dude, it really does."
     noah "This feels nostalgic, but creepy as hell at the same time."
-    ethan "It is. This whole facility IS creepy."
+    ethan "It is. This whole facility {i}is{/i} creepy."
     ethan "...Come on. Lets go check the other rooms."
 
     jump f2_p1
@@ -154,7 +154,7 @@ label f2_p6:
         pause
     jump f2_p5
 
-label room201:
+label room201: # Music Room
     if objective_go_elevator2:
         ethan "I don't have time for this..."
         $ from_locked_room = True
@@ -177,7 +177,7 @@ label room201:
     hide screen back_btn
     jump f2_p1
 
-label room202:
+label room202: # Clasroom
     if objective_go_elevator2:
         ethan "I don't have time for this..."
         $ from_locked_room = True
@@ -230,7 +230,7 @@ label room202:
     
     jump f2_p3
 
-label room20X:
+label room20X: # Locked Room
     "door locked sfx"
     if objective_go_elevator2:
         ethan "I don't have time for this..."
@@ -240,7 +240,7 @@ label room20X:
     window hide
     jump f2_p4
 
-label room203:
+label room203: # Noah's Room
     if objective_go_elevator2:
         ethan "I don't have time for this..."
         $ from_locked_room = True

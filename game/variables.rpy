@@ -27,9 +27,6 @@ default room103_pieces_taken = False
 default room104_pieces_taken = False
 
 default puzzle_missing_pieces_clicked = False
-
-
-
 default future_travel_done = False
 
 # ===== Chapter 1 Variables =====>
@@ -61,6 +58,16 @@ default ladder_clicked = False
 
 #  <===== Chapter 3 Variables =====
 default chap3_objective_find_main_key = "Objective: Find the Main Key"
+default chap3_objective_go_main_room = "Objective: Go to the Main Room"
+default chap3_objective_go_elevator = "Objective: Go to the Elevator"
 
 default objective_find_main_key3_flag = False
+
+default main_key3_acquired = False
+default start_btn_clicked = False
+default answer_correct = False
+default tried_guessing = False
+default guessing_game_won = False
+default present_travel_done = False
+default key_card3_acquired = False
 # ===== Chapter 3 Variables =====>
