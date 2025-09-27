@@ -8,8 +8,8 @@ init python:
 
 #  <===== Chapter 1 Functions =====
 
-label set_puzzle_pieces_clicked(state):
-    $ puzzle_pieces_clicked = state
+label set_puzzle_missing_pieces_clicked(state):
+    $ puzzle_missing_pieces_clicked = state
     return
 
 label set_back_btn_clicked(state):

@@ -26,7 +26,7 @@ default room101_pieces_taken = False
 default room103_pieces_taken = False
 default room104_pieces_taken = False
 
-default puzzle_pieces_clicked = False
+default puzzle_missing_pieces_clicked = False
 
 
 

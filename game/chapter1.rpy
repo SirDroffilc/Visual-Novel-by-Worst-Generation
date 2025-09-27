@@ -30,7 +30,7 @@ label f1_p1:
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
 
         call set_back_btn_clicked(False)
-        call set_puzzle_pieces_clicked(False)
+        call set_puzzle_missing_pieces_clicked(False)
 
         show screen f1_p1_buttons
         pause
@@ -49,7 +49,7 @@ label f1_p2:
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
 
         call set_back_btn_clicked(False)
-        call set_puzzle_pieces_clicked(False)
+        call set_puzzle_missing_pieces_clicked(False)
 
         show screen f1_p2_buttons
         pause
@@ -66,7 +66,7 @@ label f1_p3:
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
 
         call set_back_btn_clicked(False)
-        call set_puzzle_pieces_clicked(False)
+        call set_puzzle_missing_pieces_clicked(False)
 
         show screen f1_p3_buttons
         pause
@@ -83,7 +83,7 @@ label f1_p4:
             show screen objective_text(chap1_objective_go_puzzle_room, 0.98, 0.1)
 
         call set_back_btn_clicked(False)
-        call set_puzzle_pieces_clicked(False)
+        call set_puzzle_missing_pieces_clicked(False)
 
         show screen f1_p4_buttons
         pause
@@ -99,11 +99,11 @@ label room101:
     while not back_btn_clicked:
         show screen back_btn
         if not room101_pieces_taken:
-            show screen puzzle_pieces(0.1, 0.8)
+            show screen puzzle_missing_pieces("101")
 
-            if puzzle_pieces_clicked:
-                hide screen puzzle_pieces
-                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
+            if puzzle_missing_pieces_clicked: # piece-2, 4, 9
+                hide screen puzzle_missing_pieces
+                show screen puzzle_missing_pieces_zoomed("101")
                 if puzzle_evt_flag:
                     ethan "Found the pieces."
 
@@ -125,13 +125,13 @@ label room101:
                             show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
                     "No":
                         ethan "I'll leave them here."
-                        hide screen puzzle_pieces_zoomed
+                        hide screen puzzle_missing_pieces_zoomed
 
         pause
     
     hide back_btn
-    hide screen puzzle_pieces
-    hide screen puzzle_pieces_zoomed
+    hide screen puzzle_missing_pieces
+    hide screen puzzle_missing_pieces_zoomed
     
     jump f1_p1
 
@@ -177,13 +177,13 @@ label room103:
     
     while not back_btn_clicked:
         show screen back_btn
-        if not room103_pieces_taken:
-            show screen puzzle_pieces(0.1, 0.8)
+        if not room103_pieces_taken: 
+            show screen puzzle_missing_pieces("103")
 
-            if puzzle_pieces_clicked:
+            if puzzle_missing_pieces_clicked: # piece 6, 8
                 ethan "...Wait, what's that under the chair?"
-                hide screen puzzle_pieces
-                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
+                hide screen puzzle_missing_pieces
+                show screen puzzle_missing_pieces_zoomed("103")
                 if puzzle_evt_flag:
                     ethan "Found them."
 
@@ -205,13 +205,13 @@ label room103:
                             show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
                     "No":
                         ethan "I'll leave them here."
-                        hide screen puzzle_pieces_zoomed
+                        hide screen puzzle_missing_pieces_zoomed
 
         pause
     
     hide back_btn
-    hide screen puzzle_pieces
-    hide screen puzzle_pieces_zoomed
+    hide screen puzzle_missing_pieces
+    hide screen puzzle_missing_pieces_zoomed
     
     jump f1_p3
 
@@ -225,12 +225,12 @@ label room104:
     while not back_btn_clicked:
         show screen back_btn
         if not room104_pieces_taken:
-            show screen puzzle_pieces(0.1, 0.8)
+            show screen puzzle_missing_pieces("104")
 
-            if puzzle_pieces_clicked:
+            if puzzle_missing_pieces_clicked: # piece-1, 3, 5, 7
                 ethan "...Wait, is that—on the bed?"
-                hide screen puzzle_pieces
-                show screen puzzle_pieces_zoomed(0.8, 0.5, 0.4)
+                hide screen puzzle_missing_pieces
+                show screen puzzle_missing_pieces_zoomed("104")
 
                 if puzzle_evt_flag:
                     ethan "Oh, the pieces! There they are."
@@ -252,13 +252,13 @@ label room104:
                             show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
                     "No":
                         ethan "I'll leave them here."
-                        hide screen puzzle_pieces_zoomed
+                        hide screen puzzle_missing_pieces_zoomed
         
         pause
 
     hide back_btn
-    hide screen puzzle_pieces
-    hide screen puzzle_pieces_zoomed
+    hide screen puzzle_missing_pieces
+    hide screen puzzle_missing_pieces_zoomed
     jump f1_p4
 
 label puzzle_mini_game:

@@ -34,46 +34,21 @@ screen back_btn:
 
 #  <===== Chapter 1 Screens =====
 
-screen puzzle_pieces(x=0.5, y=0.5, zoomSize=0.05):
-    vbox:
+screen puzzle_missing_pieces(num="101", x=0.5, y=0.5, zoom_size=0.3):
+    imagebutton:
         xalign x
         yalign y
-        spacing 0
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            spacing 0
-            imagebutton:
-                idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-                hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
-                action [Hide("puzzle_pieces"), Call("set_puzzle_pieces_clicked", True)]
-            imagebutton:
-                idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-                hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
-                action [Hide("puzzle_pieces"), Call("set_puzzle_pieces_clicked", True)]
-        imagebutton:
-            idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-            hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
-            action [Hide("puzzle_pieces"), Call("set_puzzle_pieces_clicked", True)]
 
-screen puzzle_pieces_zoomed(x=0.8, y=0.5, zoomSize=0.4):
-    vbox:
+        idle Transform(f"puzzle/missing_{num}_idle.png", zoom=zoom_size)
+        hover Transform(f"puzzle/missing_{num}_hover.png", zoom=zoom_size)
+        action [Hide("puzzle_missing_pieces"), Call("set_puzzle_missing_pieces_clicked", True)]
+
+screen puzzle_missing_pieces_zoomed(num="101", x=0.8, y=0.5, zoom_size=1.2):
+    imagebutton:
         xalign x
-        yalign y
-        spacing 0
-        hbox:
-            xalign 0.5
-            yalign 0.5
-            spacing 0
-            imagebutton:
-                idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-                hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
-            imagebutton:
-                idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-                hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
-        imagebutton:
-            idle Transform("buttons/enter_room_button_idle.png", zoom=zoomSize)
-            hover Transform("buttons/enter_room_button_hover.png", zoom=zoomSize)
+        yalign y 
+
+        idle Transform(f"puzzle/zoomed_{num}.png", zoom=zoom_size)
 
 screen f1_p1_buttons:
 
