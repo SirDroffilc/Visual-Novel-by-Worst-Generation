@@ -1,4 +1,5 @@
 label chapter1:
+    "THIS IS A NEW BRANCH"
     scene black with fade
 
     show screen chapter_title_text("Chapter 1: Shadows Ahead")

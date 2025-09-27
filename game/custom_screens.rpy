@@ -20,6 +20,7 @@ screen objective_text(txt, x=0.5, y=0.5):
     key "dismiss" action Return()
 
 screen back_btn:
+    zorder 100
     hbox:
         xalign 0.9
         yalign 0.7
