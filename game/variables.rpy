@@ -58,3 +58,9 @@ default objective_go_elevator2 = False
 default ladder_clicked = False
 
 # ===== Chapter 2 Variables =====>
+
+#  <===== Chapter 3 Variables =====
+default chap3_objective_find_main_key = "Objective: Find the Main Key"
+
+default objective_find_main_key3_flag = False
+# ===== Chapter 3 Variables =====>
