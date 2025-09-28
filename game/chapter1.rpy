@@ -269,7 +269,7 @@ label room104: # Messy Room
 
             if puzzle_missing_pieces_clicked: # piece-1, 3, 5, 7
                 hide screen back_btn
-                ethan "...Wait, is that—under the table?"
+                ethan "...Wait, is that-under the table?"
                 hide screen puzzle_missing_pieces
                 show screen puzzle_missing_pieces_zoomed("104")
 

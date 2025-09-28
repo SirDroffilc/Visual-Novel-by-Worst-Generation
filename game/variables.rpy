@@ -13,7 +13,7 @@ default chap0_objective_find_clues = "Objective: Find clues to get out"
 default chap1_objective_puzzle_evt = "Objective: Find the puzzle pieces ([pieces_count] out of 9)"
 default chap1_objective_go_puzzle_room = "Objective: Go back to the Puzzle Room"
 default chap1_objective_go_main_room = "Objective: Go to the Main Room"
-default chap1_objective_go_elevator = "Objective: Go to the Elevator"
+default chap1_objective_go_elevator = "Objective: Go to the El0evator"
 
 default puzzle_evt_flag = False
 default pieces_count = 0

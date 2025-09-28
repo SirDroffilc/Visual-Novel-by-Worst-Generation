@@ -1,6 +1,6 @@
 label chapter2:
     hide screen objective_text
-    show screen chapter_title_text("Chapter 2: The Fool")
+    show screen chapter_title_text("Chapter 2 The Fool")
     pause 3.0
     hide screen chapter_title_text
     show screen chapter_label_screen(2) 

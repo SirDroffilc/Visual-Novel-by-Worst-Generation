@@ -7,7 +7,7 @@ label splashscreen:
     pause 8.0  # duration of your video
     with fade
     hide screen splash_screen
-    jump prologue
+    return
 
 
 label prologue:
