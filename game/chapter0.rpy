@@ -1,3 +1,15 @@
+label splashscreen:
+    scene black
+    show text "A Visual Novel by" with dissolve
+    pause 1.0
+    hide text with dissolve
+    show screen splash_screen
+    pause 8.0  # duration of your video
+    with fade
+    hide screen splash_screen
+    jump prologue
+
+
 label prologue:
     scene black
     "hospital beep beep sfx on loop"
@@ -22,7 +34,7 @@ label prologue:
     "walking to elevator mp4"
     "You tried to open the elevator."
     "Access Denied. F1 Key Card Required."
-
+#################
     show ethan default at left with dissolve
     ethan "I need to find this key card."
     scene bg f1p1 with fade
