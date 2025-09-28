@@ -304,7 +304,7 @@ screen navigation():
             idle "images/UI_main_menu/title_idle.png"
             hover "images/UI_main_menu/title_hover.png"
             xpos 560
-            ypos 60
+            ypos -40
             action NullAction()
 
         # Start Game Button

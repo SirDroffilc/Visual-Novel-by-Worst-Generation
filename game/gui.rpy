@@ -69,7 +69,7 @@ define gui.interface_text_font = "DejaVuSans.ttf"
 define gui.objective_text = "Mom«t___.ttf"
 
 ## The font used for chapter_title_text text.
-define gui.chapter_title_text = "October Crow.ttf"
+define gui.chapter_title_text = "Frightmare.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -95,7 +95,6 @@ define gui.title_text_size = 75
 ## The images used for the main and game menus.
 define gui.main_menu_background = Movie(play="gui/main_menu_1.webm")
 define gui.game_menu_background = "gui/game_menu.png"
-
 
 ## Dialogue ####################################################################
 ##
