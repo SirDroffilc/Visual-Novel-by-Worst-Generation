@@ -1,13 +1,14 @@
 label chapter1:
     scene black with fade
 
-    show screen chapter_title_text("Chapter 1: Shadows Ahead")
+    show screen chapter_title_text("Chapter 1 Shadows Ahead")
     pause 3.0
     hide screen chapter_title_text
 
     call screen objective_text(chap0_objective_find_clues)
-    show screen objective_text(chap0_objective_find_clues, 0.98, 0.1)
+    show screen objective_text(chap0_objective_find_clues, 0.97, 0.03)
 
+    show screen chapter_label_screen(1) 
     jump f1_p1
 
 label elevator1:
@@ -18,6 +19,7 @@ label elevator1:
     
     else:
         "Elevator door opening..."
+        hide screen chapter_label_screen
         jump chapter2
 
 label f1_p1:

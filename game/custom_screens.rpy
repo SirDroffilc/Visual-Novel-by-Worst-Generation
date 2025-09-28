@@ -1,13 +1,33 @@
-# custom screens created 
+screen splash_screen():
+    add Movie(play="gui/splashscreen.webm", loop=False, size=(650, 650)) xalign 0.5 yalign 0.5
 
+# custom screens created 
 screen chapter_title_text(txt):
     text txt:
+        font gui.chapter_title_text 
         xalign 0.5
         yalign 0.5
+        size 100 
         at chapter_fade
+
+screen chapter_label_screen(chapter):
+    if chapter == 1:
+        add "chapter1_label" xpos 30 ypos -20
+    elif chapter == 2:
+        add "chapter2_label" xpos -20 ypos 10
+    elif chapter == 3:
+        add "chapter3_label" xpos 50 ypos 0
+
+
+transform chapter_fade:
+    alpha 0.0 # start invisible
+    linear 1.0 alpha 1.0   # fade in
+    pause 1.0
+    linear 1.0 alpha 0.0   # fade out
 
 screen objective_text(txt, x=0.5, y=0.5):
     text txt:
+        font gui.objective_text
         xalign x
         yalign y
         

@@ -3,6 +3,7 @@ label chapter2:
     show screen chapter_title_text("Chapter 2: The Fool")
     pause 3.0
     hide screen chapter_title_text
+    show screen chapter_label_screen(2) 
 
     ethan "Another floor..."
     ethan "That key card was just for one floor above? "
@@ -61,6 +62,7 @@ label elevator2:
         hide screen objective_text
         "You ran towards the elevator, desperately trying to escape the scene..."
         ethan "Please... let me out... let me out..."
+        hide screen chapter_label_screen
         jump chapter3
 
 label f2_p1:

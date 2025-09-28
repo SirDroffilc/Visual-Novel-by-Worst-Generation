@@ -4,7 +4,7 @@ label chapter3:
     show screen chapter_title_text("Chapter 3: Turning Point")
     pause 3.0
     hide screen chapter_title_text
-
+    show screen chapter_label_screen(3) 
     
     "go straight toward main room animation"
     "banging sfx"
@@ -27,6 +27,7 @@ label elevator3:
     else:
         ethan "What's next?"
         hide screen objective_text
+        hide screen chapter_label_screen
         jump rooftop
 
 label f3_p1:
