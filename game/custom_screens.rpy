@@ -6,12 +6,6 @@ screen chapter_title_text(txt):
         yalign 0.5
         at chapter_fade
 
-transform chapter_fade:
-    alpha 0.0 # start invisible
-    linear 1.0 alpha 1.0   # fade in
-    pause 1.0
-    linear 1.0 alpha 0.0   # fade out
-
 screen objective_text(txt, x=0.5, y=0.5):
     text txt:
         xalign x
@@ -35,15 +29,17 @@ screen back_btn:
 
 #  <===== Chapter 1 Screens =====
 
-screen puzzle_missing_pieces(num="101", x=0.5, y=0.5, zoom_size=0.3):
-    imagebutton:
-        xalign x
-        yalign y
+screen puzzle_missing_pieces(num="101", x=0.5, y=0.5, zoom_size=0.3, clickable=True):
+    if clickable:
+        imagebutton:
+            xalign x
+            yalign y
 
-        idle Transform(f"puzzle/missing_{num}_idle.png", zoom=zoom_size)
-        hover Transform(f"puzzle/missing_{num}_hover.png", zoom=zoom_size)
-        action [Hide("puzzle_missing_pieces"), Call("set_puzzle_missing_pieces_clicked", True)]
-
+            idle Transform(f"puzzle/missing_{num}_idle.png", zoom=zoom_size)
+            hover Transform(f"puzzle/missing_{num}_hover.png", zoom=zoom_size)
+            action [Hide("puzzle_missing_pieces"), Call("set_puzzle_missing_pieces_clicked", True)]
+    else:
+        add Transform(f"puzzle/missing_{num}_idle.png", zoom=zoom_size) xalign x yalign y
 screen puzzle_missing_pieces_zoomed(num="101", x=0.8, y=0.5, zoom_size=1.2):
     imagebutton:
         xalign x
@@ -63,11 +59,11 @@ screen f1_p1_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p1_buttons"), Jump("elevator1")]
 
-        text "Enter elevator" xalign 0.0 yalign 0.5
+        text "Enter elevator" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Enter Room 101 button
-        xalign 0.1
-        yalign 0.7
+        xalign 0.35
+        yalign 0.65
         spacing 0
 
         imagebutton:
@@ -75,23 +71,22 @@ screen f1_p1_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p1_buttons"), Jump("room101")]
 
-        text "Enter room" xalign 0.0 yalign 0.5
+        text "Enter room" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Enter Room 102 button
-        xalign 0.85
-        yalign 0.7
+        xalign 0.65
+        yalign 0.65
         spacing 0
 
+        text "Enter room" xalign 0.0 yalign 0.5 size 25
         imagebutton:
             idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p1_buttons"), Jump("room102")]
 
-        text "Enter room" xalign 0.0 yalign 0.5
-
     hbox: # Move to f1_p2
         xalign 0.5
-        yalign 0.5
+        yalign 0.58
         spacing 0
 
         imagebutton:
@@ -99,7 +94,7 @@ screen f1_p1_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p1_buttons"), Jump("f1_p2")]
 
-        text "Walk forward" xalign 0.0 yalign 0.5
+        text "Walk forward" xalign 0.0 yalign 0.5 size 25
 
 screen f1_p2_buttons:
 
@@ -113,11 +108,11 @@ screen f1_p2_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p2_buttons"), Jump("f1_p1")]
 
-        text "Go back" xalign 0.0 yalign 0.5
+        text "Go back" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Enter Main Room
         xalign 0.5
-        yalign 0.35
+        yalign 0.55
         spacing 0
 
         imagebutton:
@@ -125,11 +120,11 @@ screen f1_p2_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p2_buttons"), Jump("main_room1")]
 
-        text "Enter Main Room" xalign 0.0 yalign 0.5
+        text "Enter Main Room" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Turn left, Move to f1_p3
-        xalign 0.2
-        yalign 0.5
+        xalign 0.28
+        yalign 0.6
         spacing 0
 
         imagebutton:
@@ -137,50 +132,53 @@ screen f1_p2_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p2_buttons"), Jump("f1_p3")]
 
-        text "Turn left" xalign 0.0 yalign 0.5
+        text "Turn left" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Turn right, Move to f1_p4
-        xalign 0.8
-        yalign 0.5
+        xalign 0.72
+        yalign 0.6
         spacing 0
 
+        text "Turn right" xalign 0.0 yalign 0.5 size 25
         imagebutton:
             idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p2_buttons"), Jump("f1_p4")]
 
-        text "Turn right" xalign 0.0 yalign 0.5
+        
 
 screen f1_p3_buttons:
 
     hbox: # Move back to f1_p2
-        xalign 0.5
+        xalign 0.6
         yalign 0.9
         spacing 0
 
+        text "Go back" xalign 0.0 yalign 0.5 size 25
         imagebutton:
             idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p3_buttons"), Jump("f1_p2")]
 
-        text "Go back" xalign 0.0 yalign 0.5
+        
 
     hbox: # Enter Room 103
-        xalign 0.8
-        yalign 0.5
+        xalign 0.5
+        yalign 0.55
         spacing 0
 
+        text "Enter room" xalign 0.0 yalign 0.5 size 25
         imagebutton:
             idle Transform("buttons/enter_room_button_idle.png", zoom=0.1)
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p3_buttons"), Jump("room103")]
 
-        text "Enter room" xalign 0.0 yalign 0.5
+        
 
 screen f1_p4_buttons:
 
     hbox: # Move back to f1_p2
-        xalign 0.5
+        xalign 0.3
         yalign 0.9
         spacing 0
 
@@ -189,10 +187,10 @@ screen f1_p4_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p4_buttons"), Jump("f1_p2")]
 
-        text "Go back" xalign 0.0 yalign 0.5
+        text "Go back" xalign 0.0 yalign 0.5 size 25
 
     hbox: # Enter Room 104
-        xalign 0.2
+        xalign 0.55
         yalign 0.5
         spacing 0
 
@@ -201,7 +199,7 @@ screen f1_p4_buttons:
             hover Transform("buttons/enter_room_button_hover.png", zoom=0.1)
             action [Hide("f1_p4_buttons"), Jump("room104")]
 
-        text "Enter room" xalign 0.0 yalign 0.5
+        text "Enter room" xalign 0.0 yalign 0.5 size 25
 
 screen f1_keycard:
     imagebutton:

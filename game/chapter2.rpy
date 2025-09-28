@@ -15,7 +15,7 @@ label chapter2:
     ethan "It's coming from that room..."
     ethan "Is someone there?"
     ethan "They might be able to help me find the way out."
-    "You reached out for the door knob, but..."
+    "I reached out for the door knob, but..."
     ethan "Wait... what if they're... dangerous?"
     ethan "I have to be careful."
     "stop rummaging sfx"
@@ -279,7 +279,7 @@ label room203: # Noah's Room
             call room203_cutscene
     
     else:  
-        noah "We still need to find something taller than a chair or a desk."
+        noah "We need to find something taller than a chair or a desk."
 
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
@@ -290,6 +290,7 @@ label room203: # Noah's Room
     jump f2_p5
 
 label room203_cutscene:
+    hide screen objective_text
     "GETTING THE MAIN KEY USING THE LADDER CUTSCENE"
 
     noah "Got it! Let's move on."
@@ -376,9 +377,9 @@ label main_room2:
         scene black with fade
         "door unlocking sfx"
         ethan "I'll go first."
-        "You slowly entered the main room..."
+        "I slowly entered the main room..."
         "SLAM!"
-        "The door crashed shut behind you, echoing through the room."
+        "The door crashed shut behind me, echoing through the room."
         scene bg f2p6 with fade
         noah "Ethan! Are you good?"
         ethan "Yeah, I'm fine!"
@@ -411,7 +412,7 @@ label main_room2:
             "Key Card Acquired."
             $ key_card2_acquired = True
             ethan "I need to find Noah. He's probably worried sick."  
-            "Your eyes fall on the door—left wide open."
+            "My eyes fall on the door—left wide open."
             ethan "Wait... the door's wide open."  
             ethan "Did he manage to unlock it while I was out?"  
             ethan "But... where did he go?"  

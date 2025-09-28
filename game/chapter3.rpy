@@ -26,6 +26,7 @@ label elevator3:
 
     else:
         ethan "What's next?"
+        hide screen objective_text
         jump rooftop
 
 label f3_p1:
@@ -88,18 +89,15 @@ label room303: # Game Room
     if not key_card3_acquired:
         if not guessing_game_won:
             if not tried_guessing:
-                ethan "This... is the arcade we used to go to."
-                ethan "...stop showing me these places..."
-                ethan "Haaa.. haa... breathe..."
-                ethan "I need to move forward..."
+                "An arcade machine?"
             else:
-                ethan "Let's try this again..."
+                "Let's try this again..."
             "one arcade machine turns on"
             jump guessing_mini_game
         elif not main_key3_acquired:
             "key dropping from the arcade machine"
-            ethan "...the key."
-            ethan "What are all these games for?"
+            "...the key."
+            "What are all these games for?"
             "Main Key Acquired."
             $ main_key3_acquired = True
 
@@ -148,17 +146,23 @@ label guessing_mini_game:
         if clue_number == 5:
             stop music
             play sound "audio/slamdunk_op_cut.ogg" volume 0.4
+
         show screen mini_game_clue(clue_number)
+
         $ answer = ""
-        while answer == "":
+        while not isinstance(answer, str) or answer.strip() == "":
             $ answer = renpy.input("Answer: ")
-        
+            if not isinstance(answer, str):
+                $ answer = ""   # Force back to empty so it loops again
+
+
         call check_answer(answer)
         if not answer_correct:
             "{size=+20}WRONG{/size}"
         if clue_number == 5:
             stop sound
         $ clue_number += 1
+
     
     stop music
     hide screen mini_game_clue

@@ -1,39 +1,44 @@
 label prologue:
     scene black
     "hospital beep beep sfx on loop"
-    ethan "People talk about life as if it's a gift. They wrap it in ribbons of meaning, tie it up with words like purpose, love, hope." 
-    ethan "But I can't help but see the cracks in the wrapping… the emptiness hiding beneath."
+    "People talk about life as if it's a gift. They wrap it in ribbons of meaning, tie it up with words like purpose, love, hope." 
+    "But I can't help but see the cracks in the wrapping… the emptiness hiding beneath."
     "hospital beep beep toooot"
 
-    scene bg darkroom with fade
+    scene bg room101_2 with fade
 
     pause
-    show ethan confused with dissolve
-    ethan "…Wh-where the hell am I?"
-    ethan "This… isn't my room..."
     
-    scene bg f1p1 with fade
-    pause
-    show ethan default at left with dissolve
-    ethan "This place looks like some sort of facility…"
-    show ethan confused
-    ethan "“The only way... is up?”"
+    "…Wh-where the hell am I?"
+    scene bg room101_1 with fade
+    show ethan confused at right_medium with dissolve
+    "This… isn't my room..."
+    show ethan default with Dissolve(0.1)
+    "It's empty... just a bed and a table of mess."
+    show ethan smacked with Dissolve(0.1)
+    "How did I get here?"
+    "I can't remember..."
+    show ethan default with Dissolve(0.1)
+    "I better find the way out."
+    
     scene black with fade
-    "walking to elevator mp4"
-    "You tried to open the elevator."
-    "Access Denied. F1 Key Card Required."
-
-    show ethan default at left with dissolve
-    ethan "I need to find this key card."
-    scene bg f1p1 with fade
-    pause
-    show ethan default at left with dissolve
-    ethan "That room looks important…"
-    scene black with fade
-    "(walk up to main room, interact mp4)"
-    show ethan default at left with dissolve
+    $ renpy.movie_cutscene("videos/look_to_onlyway.webm")
+    scene bg c0_onlyway
+    "“The only way... is up?”"
+    "This place looks like some sort of facility..."
+    
+    scene black
+    $ renpy.movie_cutscene("videos/onlyway_to_elevator.webm")
+    scene bg c0_elevator
+    "An elevator... is this working?"
+    "{i}Elevator Screen: Access Denied. F1 Key Card Required.{/i}"
+    "I need to find this key card."
+    
+    scene black
+    $ renpy.movie_cutscene("videos/elevator_to_mainroom.webm")
+    scene bg c0_mainroom
+    "This room looks important…"
     "(door locked sfx)"
-    show ethan confused
-    ethan "It's locked. What should I do? I need to get out of this place."
+    "It's locked. What should I do? I need to get out of this place."
     
     jump chapter1
