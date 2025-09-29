@@ -1,5 +1,6 @@
 default from_locked_room = False
 default back_btn_clicked = False
+default main_key_clicked = False
 default keycard_clicked = False
 
 #  <===== Chapter 0 Variables =====
@@ -9,14 +10,13 @@ default chap0_objective_find_clues = "Objective: Find clues to get out"
 
 
 #  <===== Chapter 1 Variables =====
-
+default pieces_count = 0
 default chap1_objective_puzzle_evt = "Objective: Find the puzzle pieces ([pieces_count] out of 9)"
 default chap1_objective_go_puzzle_room = "Objective: Go back to the Puzzle Room"
 default chap1_objective_go_main_room = "Objective: Go to the Main Room"
-default chap1_objective_go_elevator = "Objective: Go to the El0evator"
+default chap1_objective_go_elevator = "Objective: Go to the Elevator"
 
 default puzzle_evt_flag = False
-default pieces_count = 0
 default all_pieces_obtained = False
 
 default main_key1_acquired = False

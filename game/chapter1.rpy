@@ -12,13 +12,15 @@ label chapter1:
     jump f1_p1
 
 label elevator1:
-    scene black with fade
+    scene bg elevator with fade
+    play sound "audio/sfx_elevator_locked.ogg"
     if not key_card1_acquired:
-        "Access Denied. F1 Key Card Required."
+        "{i}Access Denied. F1 Key Card Required.{/i}"
         ethan "I need the Key Card."
     
     else:
-        "Elevator door opening..."
+        stop music fadeout 2.0
+        play sound "audio/sfx_elevator_unlock.ogg"
         hide screen chapter_label_screen
         jump chapter2
 
@@ -97,8 +99,12 @@ label room101: # Empty Room (Starting Room)
     if not room101_pieces_taken:
         show screen puzzle_missing_pieces("101", x=0.37, y=0.53, zoom_size=0.1, clickable=False) 
 
+    if key_card1_acquired:
+        "I should go to the elevator..."
+        jump f1_p1
+    
     "This is where I woke up."
-    "Nothing's here—just a bed and a table with a bunch of random junk on top of it."
+    "Nothing's here-just a bed and a table with a bunch of random junk on top of it."
     window hide
 
     call set_back_btn_clicked(False)
@@ -111,17 +117,14 @@ label room101: # Empty Room (Starting Room)
                 hide screen puzzle_missing_pieces
                 show screen puzzle_missing_pieces_zoomed("101")
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Found the pieces."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Are these puzzle pieces? What are these for?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Again? What are these pieces for?"
 
@@ -138,7 +141,6 @@ label room101: # Empty Room (Starting Room)
                     "No":
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
-                        hide frame_overlay
                         hide ethan
                         show screen puzzle_missing_pieces("101", x=0.37, y=0.53, zoom_size=0.1, clickable=False)
                         call set_puzzle_missing_pieces_clicked(False)
@@ -159,34 +161,44 @@ label room102: # Puzzle Room
     scene bg puzzle_room_1 with fade
     pause
 
-    if puzzle_evt_flag:
-        "I have to look for the puzzle pieces."
-        "...the other rooms, maybe?"
-    
+    if key_card1_acquired:
+        "I should go to the elevator..."
+        jump f1_p1
+
+    if main_key1_acquired:
+        "I got a key. Maybe I should try the main room..."
+
     else:
-        show ethan default at sprite_slide_from_left
-        ethan "This room looks totally different from the outside..."
-        ethan "Wait... this... looks like the arcade I used to go to with a friend."
-        ethan "Is it a coincidence?"
-        ethan "...That's not important."
-        ethan "What should I even look for?"
-        show ethan confused with Dissolve(0.1)
-        ethan "Wait... something's written on the wall."
-        scene bg puzzle_room_2 with fade
-        "\"Assemble the pieces\"?"
-        hide ethan with dissolve
-        call screen objective_text(chap1_objective_puzzle_evt)
-        show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
-        $ puzzle_evt_flag = True
+        if puzzle_evt_flag:
+            "I have to look for the puzzle pieces."
+            "...the other rooms, maybe?"
+        
+        else:
+            show ethan default at sprite_slide_from_left
+            ethan "This room looks totally different from the outside..."
+            ethan "Wait... this... looks like the arcade I used to go to with a friend."
+            ethan "Is it a coincidence?"
+            ethan "...That's not important."
+            ethan "What should I even look for?"
+            show ethan confused with Dissolve(0.1)
+            ethan "Wait... something's written on the wall."
+            scene bg puzzle_room_2 with fade
+            "\"Assemble the pieces\"?"
+            hide ethan with dissolve
+            
+            call screen objective_text(chap1_objective_puzzle_evt)
+            show screen objective_text(chap1_objective_puzzle_evt, 0.98, 0.1)
+            $ puzzle_evt_flag = True
 
-        show ethan confused at sprite_slide_from_left
-        ethan "A jigsaw puzzle? Seriously?"
-        show ethan smacked with Dissolve(0.1)
-        ethan "Ugh, but it's the only lead I've got."
-        ethan "...fine."
+            show ethan confused at sprite_slide_from_left
+            ethan "A jigsaw puzzle? Seriously?"
+            show ethan smacked with Dissolve(0.1)
+            ethan "Ugh, but it's the only lead I've got."
+            ethan "...fine."
 
-        hide ethan with dissolve
+            hide ethan with dissolve
     
+    call set_back_btn_clicked(False)
     while not back_btn_clicked:
         show screen back_btn
         pause
@@ -198,6 +210,11 @@ label room103: # Office Room
     if not room103_pieces_taken:
         show screen puzzle_missing_pieces("103", x=0.08, y=0.43, zoom_size=0.12, clickable=False) 
     pause
+
+    if key_card1_acquired:
+        "I should go to the elevator..."
+        jump f1_p3
+
     "This room looks like an office… maybe for some kind of company."
     "...It doesn't feel like anyone's worked here in years."
     
@@ -212,17 +229,14 @@ label room103: # Office Room
                 hide screen puzzle_missing_pieces
                 show screen puzzle_missing_pieces_zoomed("103")
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Found them."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
                     show ethan default at sprite_slide_from_left
                     ethan "Are these puzzle pieces?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Another set of pieces? What are these for?"
 
@@ -239,7 +253,6 @@ label room103: # Office Room
                     "No":
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
-                        hide frame_overlay
                         hide ethan
                         show screen puzzle_missing_pieces("103", x=0.08, y=0.43, zoom_size=0.12, clickable=False) 
                         call set_puzzle_missing_pieces_clicked(False)
@@ -258,6 +271,10 @@ label room104: # Messy Room
         show screen puzzle_missing_pieces("104", x=0.57, y=0.69, zoom_size=0.12, clickable=False) 
     pause
 
+    if key_card1_acquired:
+        "I should go to the elevator..."
+        jump f1_p4
+
     "Ugh, what's that smell?"
     "It's like a mix of dust, dirty laundry, and… rotten food left out for weeks."
     "This whole place feels like a garbage dump, not a bedroom."
@@ -274,17 +291,14 @@ label room104: # Messy Room
                 show screen puzzle_missing_pieces_zoomed("104")
 
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Oh, the pieces! There they are."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
                     show ethan default at sprite_slide_from_left
                     ethan "Are these puzzle pieces?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "What's with all these puzzle pieces?"
 
@@ -300,7 +314,6 @@ label room104: # Messy Room
                     "No":
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
-                        hide frame_overlay
                         hide ethan
                         show screen puzzle_missing_pieces("104", x=0.57, y=0.69, zoom_size=0.12, clickable=False) 
                         call set_puzzle_missing_pieces_clicked(False)
@@ -313,17 +326,55 @@ label room104: # Messy Room
     jump f1_p4
 
 label puzzle_mini_game:
-    scene bg puzzle_mini_game with fade
+    scene bg puzzle_room_2 with fade
+    hide screen objective_text
 
+    if key_card1_acquired:
+        "I should go to the elevator..."
+        jump f1_p1
     if main_key1_acquired:
         "I already got the Main Key."
         jump f1_p1
-        
+
+    show ethan smile at sprite_slide_from_left
+    ethan "I got all the pieces..."
+    ethan "Let's give it a try."
+
+    # Start the drag-and-drop puzzle
+    scene bg puzzle_mini_game with fade
+    $ set_placed_false()
+    call screen drag_puzzle
+    $ result = _return
+
+    if result == "back":
+        jump f1_p1
+    elif result == "win":
+        jump puzzle_win
+
+    jump f1_p1
+
+label puzzle_win:
+    hide screen drag_puzzle
+    scene bg puzzle_room_2
+    show screen ethan_picture with fade
+    ethan "A picture... of me?"
+    ethan "I wonder when's the last time I looked this... happy..."
+    hide screen ethan_picture with dissolve
+    play sound "audio/sfx_object_dropped.ogg"
     "The claw machine?"
     scene bg puzzle_room_3 with fade
+
+    show screen main_key(filepath="keys/key1.png", x=0.25, y=0.4, zoom_size=1.0, clickable=False) with dissolve
     "It's the key..."
-    "Main Key acquired."
+    call set_main_key_clicked(False)
+
+    while not main_key_clicked:
+        show screen main_key(filepath="keys/key1.png", x=0.25, y=0.4, zoom_size=1.0, clickable=True)
+        pause
+    
+    "{i}Main Key acquired.{/i}"
     $ main_key1_acquired = True
+
     call screen objective_text(chap1_objective_go_main_room)
     show screen objective_text(chap1_objective_go_main_room, 0.98, 0.1)
  
@@ -332,7 +383,8 @@ label puzzle_mini_game:
 label main_room1:
     if not main_key1_acquired:
         $ from_locked_room = True
-        "door locked sfx"
+        play sound "audio/sfx_door_locked.ogg"
+        "..."
         if puzzle_evt_flag:
             if all_pieces_obtained:
                 "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
@@ -344,37 +396,39 @@ label main_room1:
         jump f1_p2
 
     if not future_travel_done:
-        scene bg darkroom with fade
-        ethan "A bunch of alcohol, corporate attire, and… a coffin?"
+        scene bg mainroom1 with fade
+        show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.38, zoom_size=0.05, clickable=False)
+        ethan "A bunch of alcohol, clothes, and… a coffin?"
         ethan "This is creepy."
         ethan "Wait… is that the key card for the elevator?"
-        show screen f1_keycard
+        call set_keycard_clicked(False)
+        show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.5, zoom_size=1.0, clickable=True)
         while not keycard_clicked:
             "Take the Key Card"
 
         ethan "Wha-What's happening? I-I feel... "
-        hide screen f1_keycard
+        hide screen keycard
         hide screen objective_text
         jump future_travel
         
     else: # future_travel is done
         if key_card1_acquired:
-            scene bg darkroom with fade
+            scene bg mainroom1 with fade
             "I already have the Key Card for the elevator. I better get out of here."
             jump f1_p2
     
-        scene bg darkroom with Fade(1.0, 1.0, 1.0, color="#fff")
-        ethan "Haaa... haaa..."
-        ethan "Thi-this is the room before."
-        ethan "I'm... back?"
-        ethan "Haa.. haa…"
-        ethan "Wh-what just happened to me?"
-        ethan "That was.. the worst."
-        ethan "Was that... really my future?"
-        ethan "No, no… I don't want that…"
-        ethan "I... I-I have to get out of this place."
+        scene bg mainroom1 with Fade(1.0, 1.0, 1.0, color="#fff")
+        "Haaa... haaa..."
+        "Thi-this is the room before."
+        "I'm... back?"
+        "Haa.. haa…"
+        "Wh-what just happened to me?"
+        "That was.. the worst."
+        "Was that... really my future?"
+        "No, no… I don't want that…"
+        "I... I-I have to get out of this place."
         
-        "Key Card Acquired"
+        "{i}Key Card Acquired{/i}"
         $ key_card1_acquired = True
         call screen objective_text(chap1_objective_go_elevator)
         show screen objective_text(chap1_objective_go_elevator, 0.98, 0.1)

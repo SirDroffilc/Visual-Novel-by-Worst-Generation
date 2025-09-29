@@ -9,16 +9,19 @@ label splashscreen:
     hide screen splash_screen
     return
 
-
 label prologue:
     scene black
-    "hospital beep beep sfx on loop"
-    "People talk about life as if it's a gift. They wrap it in ribbons of meaning, tie it up with words like purpose, love, hope." 
-    "But I can't help but see the cracks in the wrapping… the emptiness hiding beneath."
-    "hospital beep beep toooot"
-
+    play music "audio/sfx_heart_monitor.ogg"
+    "People talk about life as if it's a gift." 
+    "They wrap it in ribbons of meaning, tie it up with words like purpose, love, hope."
+    stop music
+    play sound "audio/sfx_heart_monitor_beep.ogg"
+    "But I can't help but see the cracks in the wrapping..."
+    "...the emptiness hiding beneath."
+    pause 2.0
     scene bg room101_2 with fade
-
+    stop sound
+    play music "audio/bgm_dark_quiet.ogg"
     pause
     
     "…Wh-where the hell am I?"
@@ -41,8 +44,9 @@ label prologue:
     
     scene black
     $ renpy.movie_cutscene("videos/onlyway_to_elevator.webm")
-    scene bg c0_elevator
+    scene bg elevator
     "An elevator... is this working?"
+    play sound "audio/sfx_elevator_locked.ogg"
     "{i}Elevator Screen: Access Denied. F1 Key Card Required.{/i}"
     "I need to find this key card."
     
@@ -50,7 +54,8 @@ label prologue:
     $ renpy.movie_cutscene("videos/elevator_to_mainroom.webm")
     scene bg c0_mainroom
     "This room looks important…"
-    "(door locked sfx)"
+    play sound "audio/sfx_door_locked.ogg"
+    "..."
     "It's locked. What should I do? I need to get out of this place."
     
     jump chapter1

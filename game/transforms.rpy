@@ -29,4 +29,4 @@ transform frame_slide_from_left:
 transform exit_left_fast:
     linear 1.0 xalign -1.5   # slide off left in 0.1s
 
-image frame_overlay = "sprite_frame/frame_try.png"
+image frame_overlay = "sprite_frame/small_frame.png"

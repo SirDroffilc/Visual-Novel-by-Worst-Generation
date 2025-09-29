@@ -33,7 +33,7 @@ label epilogue:
     "Yeah, I remember now." 
     "That night, while I was out, a speeding car hit me."
     "Mom told me I'd been in a coma for a year."
-    "I'd heard stories of coma patients when they woke up—some say that they could hear the world around them while unconscious; others claim they lived on in another place, in another world..."
+    "I'd heard stories of coma patients when they woke up-some say that they could hear the world around them while unconscious; others claim they lived on in another place, in another world..."
     "I guess what I experienced in that strange facility was exactly that."
 
     "After waking up and recovering, I knew what I had to do."
@@ -44,21 +44,21 @@ label epilogue:
 
     "I talked with his family."
     "I apologized for not even paying proper respects at Noah's funeral."
-    "They told me they never wanted anything like that to ever happen again — not to anyone."
+    "They told me they never wanted anything like that to ever happen again-not to anyone."
     "So, I explained everything. I told them about our friendship, and gave them the recording that Noah left for us."
 
     scene black with fade
     "Hey…"
     "…I wanted to give this to you."
-    "It's the manga of our favorite show — signed by the author himself."
+    "It's the manga of our favorite show - signed by the author himself."
     "One of my patients gave it to me as a gift. But I knew, right away, it belonged here. With you."
     "Noah… I became a psychiatrist."
     "I wanted to help people who were struggling the way you once were."
     "I couldn't be there for you back then… but I can be here for others now."
     "Back then, I thought life was empty."
     "A cracked gift box, with nothing inside."
-    "I guess life really is a gift—not because it's perfect, but because it's fragile."
-    "My life with you was a gift—one that I will treasure forever."
+    "I guess life really is a gift-not because it's perfect, but because it's fragile."
+    "My life with you was a gift-one that I will treasure forever."
 
     jump ending
 
