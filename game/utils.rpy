@@ -1,7 +1,14 @@
 init python:
+    
+    renpy.music.register_channel(
+        "sfxloop",                # channel name
+        "music",                  # copy functionality of the music channel
+        True                      # this makes it a 'file' channel, not just sound
+    )
     # Set default volume for all main channels
     renpy.music.set_volume(0.8, channel="music")
     renpy.music.set_volume(0.8, channel="sound")
+    renpy.music.set_volume(0.8, channel="sfxloop")
     renpy.music.set_volume(0.8, channel="voice")
     renpy.music.set_volume(0.8, channel="movie")
 

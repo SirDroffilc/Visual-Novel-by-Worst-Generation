@@ -439,7 +439,7 @@ label main_room1:
             "I already have the Key Card for the elevator. I better get out of here."
             jump f1_p2
     
-        scene bg mainroom1 with Fade(1.0, 1.0, 1.0, color="#fff")
+        scene bg mainroom1 with Fade(0.5, 1.0, 0.5, color="#fff")
         "Haaa... haaa..."
         "Thi-this is the room before."
         "I'm... back?"
@@ -466,14 +466,123 @@ label main_room1:
         jump f1_p2
 
 label future_travel:
-    scene black with Fade(1.0, 1.0, 1.0, color="#fff")
+    play sound "audio/sfx_transition.ogg"
+    scene black with Fade(0.5, 1.0, 0.5, color="#fff")
+    play music "audio/bgm_ambient_horror.ogg"
+    show drunk with fade
+    play sound "audio/sfx_dizzy_drunk.ogg"
+    "Wh-where am I? I was just getting the key card and… and..."
+    "Ugh, I-I feel dizzy… am I drunk?"
+    hide drunk
+    show getting_drunk with fade
+    "Why the hell am I drinking?"
+    "This feels so strange."
+    show drunk with fade
+    "Who is that?"
+    show 23 with fade 
+    play sound "audio/voice_saw_old_self.ogg"
+    "Is that me?"
+    "Why do I look so old?"
+    "I look like a mess..."
 
-    "Time Travel Future"
-    "DRINKING ALCOHOL"
-    "NECKTIE STRANGLE"
-    "COFFIN FUNERAL"
-    "END"
-
+    scene drunk with fade
+    "Ughh, I can't th-think clearly..."
+    show 22 with fade
+    "This place looks and smells like it hasn't been cleaned for years"
+    hide 22 with fade
+    show drunk with fade   
+    "How did I even get here?"
+    show 22 with dissolve
+    hide drunk
+    "{i} I tried to stand up... {/i}"
+    show drunk with dissolve
+    hide 22
+    play sound "audio/sfx_body_impact.ogg"
+    "{size=+10}SLAM!{/size}"
+    queue sound "audio/voice_fall_down.ogg"
+    "Agh!"
+    show 22 with dissolve
+    hide drunk
+    show drunk with dissolve
+    hide 22
+    show 22 with dissolve
+    hide drunk
+    "M-my head..."
+    show drunk with dissolve
+    hide 22
+    "I'm losing... consciousness..."
+    play sound "audio/sfx_transition.ogg"
+    scene black with Fade(0.5, 1.0, 0.5, color="#fff")
+    scene 21 
+    "What now?"
+    "I look like I'm preparing to go out"
+    show 24 with fade
+    "I still look like a mess"
+    show 25
+    hide 24
+    "Is this the future"
+    show 26
+    hide 25
+    play sound "audio/voice_strangle1.ogg"
+    "Ghhck. Th-that's too tight…"
+    show 27
+    hide 26
+    play sound "audio/voice_strangle2.ogg"
+    "I… krrck… ca-can't co-control.. my ha-and…"
+    show 28
+    hide 27
+    play sound "audio/voice_strangle3.ogg"
+    "Krrck"
+    show 29
+    hide 28
+    play sound "audio/voice_strangle4.ogg"
+    "Ghhck"
+    pause
+    play sound "audio/sfx_transition.ogg"
+    scene black with Fade(0.5, 1.0, 0.5, color="#fff")
+    pause 2.0
+    play sound "audio/voice_heavy_breathing.ogg"
+    "Haaa… haaa… Wh-what was that?"
+    "I couldn't control my own body."
+    scene coffin1 with fade
+    "Huh... What... Where?"
+    "Wait… am I… in-inside a coffin?"
+    "I'm trapped!"
+    scene coffin2
+    play sfxloop "audio/sfx_coffin_banging.ogg" loop
+    "HELP!"
+    "HEELLPP!"
+    scene coffin1
+    "HEEEELLLPP!!!"
+    scene coffin2
+    "LET ME OUT!!!"
+    "AAAAAAAGGGGHHH"
+    scene white with fade
+    $ renpy.music.set_volume(0.4, delay=0.0, channel='sfxloop')
+    scene bg funeral3 with hpunch
+    "I'm out of the coffin... but I can still see my body struggling inside, trying to get out."
+    scene bg funeral1 with hpunch
+    "Is this... my funeral?"
+    scene bg funeral2 with hpunch
+    "A-am I... dead?"
+    scene bg funeral3 with hpunch
+    "No, no, no, no, no, no, no, no, no, no, no, no…"
+    scene bg funeral1 with hpunch
+    "No one's even here."
+    scene bg funeral2 with hpunch
+    "Did I die alone?"
+    scene bg funeral3 with hpunch
+    "No, please… I don't wanna die."
+    scene bg funeral1 with hpunch
+    "No, no, no, no, no, no, no…"
+    scene bg funeral2 with hpunch
+    "NOOOOO!!!" 
+    
+    play sound "audio/sfx_transition.ogg"
+    stop sfxloop fadeout 2.0
+    stop music fadeout 1.0
+    $ renpy.music.set_volume(0.8, delay=0.0, channel='sfxloop')
+    scene white with fade
     $ future_travel_done = True
 
     jump main_room1

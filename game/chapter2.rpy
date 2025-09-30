@@ -525,13 +525,124 @@ label main_room2:
         jump f2_p6
 
 label past_travel:
-    ethan "P-please... don't make me see {i}that{/i} again-"
+    "P-please... don't make me see {i}that{/i} again..."
 
-    scene black with Fade(1.0, 1.0, 1.0, color="#fff")
-    
-    "TIME TRAVEL PAST"
-    "BONDING WITH NOAH"
-    "BLA BLA BLA"
+    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
+    "Ah, too bright..."
+    scene bg run with Fade(0.5, 1.0, 0.5, color="#fff")
+    "Where am I?"
+    scene bg ethan_running2 with Dissolve(0.5)
+    ethan "Is this outside?"
+    ethan "We're running?"
+    scene bg ethannoah_running with Dissolve(0.5)
+    noah "DUDE, STOP DAYDREAMING! WE'RE RUNNING LATE"
+    ethan "What?!"
+    scene bg ethannoah_running2 with Dissolve(0.5)
+    ethan "Noah, I thought you couldn't enter the room... Thank God you're here!"
+    noah "Uhh, room? What are you talking about? Dude, are you still asleep?"
+   
+    scene bg run with Dissolve(0.2)
+    show ethan run2_unif at left with hpunch
+    "{size=+10}*SMACK!*{/size}"
+    "{i}A dull thud of pain spread across my back...{/i}"
+    show noah laughing_unif at right with Dissolve(0.2)
+    noah "HAHAHA! Did that wake you up?"
+    ethan "..."
+    show ethan default_unif at left with Dissolve(0.1)
+    "{i}No, he's not the one I was with in the facility.{/i}"
+    "{i}...{/i}"
+    "{i}I guess he's the Noah of this time. I'm back in our high school days{/i}"
 
+    show noah run1_unif at right with Dissolve(0.1)
+    noah "JUST FIVE MORE MINUTES! DUDE, HURRY UP!"
+
+    jump classroom
+
+label classroom:
+    scene bg classroom2 with fade
+    pause 2.0
+    scene bg classroom1 with fade
+    show ethan observing_unif at center with dissolve
+    show ethan observing_unif at left with move
+    ethan "We just attended the lecture for the first period. Nothing strange has happened yet." 
+    show ethan default_unif with Dissolve(0.1)
+    show noah bored_unif at right with Dissolve(0.1)
+    noah "Ughh, that was boring. Why do we gotta learn about a bunch of dead guys?"
+    noah "They're not coming back anyway..."
+    show ethan talking_unif with Dissolve(0.1)
+    ethan "Maybe, but it's still important."
+    show noah talking_unif with Dissolve(0.1)
+    ethan "The world is messed up-or not messed up-because of what they all did back then."
+    noah "Yeah, but it's boring right?"
+    show noah leftlook_unif with Dissolve(0.1)
+    ethan "..."
+    ethan "Yeah, it is."
+    show ethan laughing_unif with Dissolve(0.1)
+    show noah laughing_unif with Dissolve(0.1)
+    ethan "HAHAHA."
+
+    hide ethan with Dissolve(0.1)
+    hide noah with Dissolve(0.1)
+    scene black with fade
+    jump music_clubroom
+
+label music_clubroom:
+    scene bg after_school with fade
+    "After class, we met with our bandmates and went to this music studio near our school." 
+    scene bg music_studio with fade 
+    "I play the guitar. Noah's our vocalist. He goes absolutely crazy at the mic."
+    scene black with fade
+    pause 1.0
+
+    scene arc 
+    "transition to arcade"
+    "After that, we went to the arcade."
+    hide ethan talking_unif
+    scene bg play_arc with fade
+    show ethan laughing_unif at left with dissolve
+    "This guy really sucks at video games, but he's fun to play with."
+    scene bg play_arc2
+    hide ethan laughing_unif
+
+    scene black with fade
+    pause 1.0 
+
+    scene bg house with fade
+    "transition to house"
+    show ethan observing_unif at right with dissolve
+    ethan "Then, we went to his house to play this murder mystery visual novel about a group of extraordinary high school kids killing each other."
+    hide ethan observing_unif
+    show vn_closeup at center with dissolve
+    ethan "I really liked this VN series"
+    hide vn_closeup
+    scene bg play2 with fade
+    "(Ethan and Noah): Whaaaat???"
+    pause 5.0
+    scene bg play
+    pause 5.0
+    scene bg house with fade
+    show ethan default_unif at right with dissolve
+    ethan "This was our usual routine."
+    ethan "Go to school, hang out with our band, play at the arcade or at the basketball court, then play some more at his house."
+    hide ethan default_unif
+    scene black
+    pause 0.5
+    ethan "I missed this" 
+    show ethan default_unif at center with dissolve
+    pause 2.0
+    hide ethan default_unif
+    show ethan dismayed2_unif at center
+    ethan "..."
+    ethan "But..."
+    hide ethan dismayed2_unif
+    show ethan dismayed_unif
+    pause 1.0
+    hide ethan dismayed_unif
+    show ethan closeup_unif with move
+    ethan "Am I allowed to have this much fun?"
+
+    pause 1.0
+    scene bg black with fade
+    stop sound
     $ past_travel_done = True
     jump main_room2
