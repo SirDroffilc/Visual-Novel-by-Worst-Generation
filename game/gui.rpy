@@ -71,6 +71,9 @@ define gui.objective_text = "Mom«t___.ttf"
 ## The font used for chapter_title_text text.
 define gui.chapter_title_text = "Frightmare.ttf"
 
+## The font used for 13 yrs later text.
+define gui.after_some_time_text = "VCR_OSD_MONO_1.001.ttf"
+
 ## The size of normal dialogue text.
 define gui.text_size = 33
 
