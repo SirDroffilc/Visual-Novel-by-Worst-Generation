@@ -1,6 +1,5 @@
 label chapter2:
     hide screen objective_text
-    play music "audio/bgm_dark_quiet.ogg"
     scene black with fade
     show screen chapter_title_text("Chapter 2 The Fool")
     pause 3.0
@@ -9,24 +8,24 @@ label chapter2:
     
     scene bg f2p1 with fade
     stop music fadeout 1.0
-    ethan "Another floor..."
-    ethan "That key card was just for one floor above? "
-    ethan "...but I have to keep moving... even if every part of me wants to turn back."
-    ethan "I swear, this place will make me go insane."
+    "Another floor..."
+    "That key card was just for one floor above? "
+    "...but I have to keep moving... even if every part of me wants to turn back."
+    "I swear, this place will make me go insane."
 
     play sound "audio/sfx_rummaging.ogg"
 
-    ethan "What's that noise?"
-    ethan "It's coming from that room..."
-    ethan "Is someone there?"
-    ethan "They might be able to help me find the way out."
+    "What's that noise?"
+    "It's coming from that room..."
+    "Is someone there?"
+    "They might be able to help me find the way out."
     "I reached out for the door knob, but..."
-    ethan "Wait... what if they're... dangerous?"
-    ethan "I have to be careful."
+    "Wait... what if they're... dangerous?"
+    "I have to be careful."
     stop sound
-    ethan "It stopped..."
+    "It stopped..."
     play music "audio/sfx_heartbeat.ogg"
-    ethan "Did they hear me?"
+    "Did they hear me?"
     play sound "audio/sfx_door_unlock.ogg"
     pause 1.0
 
@@ -34,6 +33,7 @@ label chapter2:
     stop sound
     scene bg room201_1 with fade
     show noah shocked with vpunch
+    pause
     noah "ETHAN?!"
     show noah shocked at right:
         linear 0.1 xalign 0.9
@@ -117,9 +117,9 @@ label f2_p1:
         hide noah with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
         hide frame_overlay with Dissolve(0.1)
-        play music "audio/bgm_dark_quiet.ogg"
+        play music "audio/bgm_dark_quiet.ogg" fadein 1.0
         call screen objective_text(chap2_objective_find_main_key)
-        show screen objective_text(chap2_objective_find_main_key, 0.98, 0.1)
+        show screen objective_text(chap2_objective_find_main_key, 0.93, 0.07)
         $ objective_find_main_key_shown = True
 
     call set_back_btn_clicked(False)
@@ -201,7 +201,10 @@ label room201: # Music Room
         $ from_locked_room = True
         window hide
         jump f2_p1
-    scene bg room201_1 with fade
+    if not ladder_acquired:
+        scene bg room201_1 with fade
+    else:
+        scene bg room201_3 with fade
 
     if objective_find_noah:
         ethan "He's not here..."
@@ -244,7 +247,7 @@ label room201: # Music Room
                 hide screen ladder_layer
                 scene bg room201_3
                 call screen objective_text(chap2_objective_go_dorm_room)
-                show screen objective_text(chap2_objective_go_dorm_room, 0.98, 0.1)
+                show screen objective_text(chap2_objective_go_dorm_room, 0.93, 0.07)
             pause
         hide screen back_btn
         hide screen ladder_layer
@@ -337,7 +340,7 @@ label room203: # Noah's Room
         hide ethan with Dissolve(0.1)
         hide frame_overlay with Dissolve(0.1)
         call screen objective_text(chap2_objective_find_tall)
-        show screen objective_text(chap2_objective_find_tall, 0.98, 0.1)
+        show screen objective_text(chap2_objective_find_tall, 0.93, 0.07)
         $ find_tall_evt_flag = True
 
     if objective_find_noah or main_key2_acquired or ladder_acquired:
@@ -375,7 +378,7 @@ label room203_cutscene:
     ethan "Ye... yeah, let's go."
     scene bg room203_3 with fade 
     call screen objective_text(chap2_objective_go_main_room)
-    show screen objective_text(chap2_objective_go_main_room, 0.98, 0.1)
+    show screen objective_text(chap2_objective_go_main_room, 0.93, 0.07)
     $ main_key2_acquired = True
     return
 
@@ -387,12 +390,13 @@ label noah_revelation:
     play sound "audio/sfx_door_unlock.ogg"
     pause 2.0
     play sound "audio/sfx_horror_sting.ogg"
+    pause 0.3
     scene bg room203_4 with vpunch
     pause
     
     "(voice acting NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO"
 
-    play music "audio/bgm_dark_quiet.ogg"
+    play music "audio/bgm_sad_horror.ogg"
     "I… I knew it."
     "I knew this place wasn't kind enough to just let me relive our high school memories."
     "The moment I saw him on this floor… I knew."
@@ -417,7 +421,6 @@ label noah_revelation:
     "I was too busy. Too wrapped up in my own world. Too blind to see he was drowning."
     "And now-he's gone."
 
-    "(lines with voice acting), angry at self"
     "He needed me, and I WASN'T THERE!"
     "DON'T TELL ME IT WASN'T MY FAULT-"
     "BECAUSE IT IS!"
@@ -426,15 +429,18 @@ label noah_revelation:
     "I WAS THE CLOSEST PERSON TO HIM!"
     "I SHOULD'VE SAVED HIM!"
     "I'M THE ONE TO BLAME!"
-    pause
+    stop music fadeout 8.0
+    ""
     "I... I didn't even go to his funeral..."
     "...couldn't even talk to his family."
     "I had no right."
     "I... I didn't do anything for him."
 
+    play music "audio/bgm_ambient_horror.ogg" fadein 2.0
+
     $ noah_revelation_done = True
     call screen objective_text(chap2_objective_go_elevator)
-    show screen objective_text(chap2_objective_go_elevator, 0.98, 0.1)
+    show screen objective_text(chap2_objective_go_elevator, 0.93, 0.07)
     $ objective_go_elevator2 = True
     jump f2_p5
 
@@ -455,6 +461,7 @@ label main_room2:
 
     if not past_travel_done:
         hide screen objective_text
+        stop music fadeout 2.0
         scene black with fade
         play sound "audio/sfx_door_unlock.ogg"
         ethan "I'll go first."
@@ -467,23 +474,26 @@ label main_room2:
         scene bg f2p6 with fade
         show noah scared at left with Dissolve(0.1)
         noah "Ethan! Are you good?"
-        ethan "Yeah, I'm fine!"
-        ethan "...but the door's stuck."
+        ethan "{i}Yeah, I'm fine!{/i}"
+        ethan "{i}...but the door's stuck.{/i}"
         noah "That's fine. Can you see the key card?"
-        ethan "Yeah, it's here!"
+        ethan "{i}Yeah, it's here!{/i}"
         noah "Just grab the card. I'll find a way to open the door."
         hide noah with Dissolve(0.1)
 
         scene bg mainroom2 with fade
         show screen keycard(filepath="keys/keycard2.png", x=0.5, y=0.5, zoom_size=0.1, clickable=False)
-        "I see it… the key card."
-        "But… am I really going to go through that nightmare again?"
-        "I-I'm scared. But if we ever want to get out of here…"
+        play music "audio/bgm_ambient_horror.ogg"
+        ethan "Everything's... upside down... but this table..."
+        ethan "The key card."
+        ethan "Am I really going to go through that nightmare again?"
+        ethan "I-I'm scared. But if we ever want to get out of here…"
         call set_keycard_clicked(False)
         show screen keycard(filepath="keys/keycard2.png", x=0.5, y=0.5, zoom_size=1.0, clickable=True) 
         while not keycard_clicked:
             "{i}Take the Key Card{/i}"
         
+        stop music fadeout 2.0
         hide screen keycard
         hide screen objective_text
         jump past_travel
@@ -503,8 +513,9 @@ label main_room2:
             "Did he manage to unlock it while I was out?"  
             "But... where did he go?"  
 
-            call screen objective_text(chap2_objective_find_noah)
-            show screen objective_text(chap2_objective_find_noah, 0.98, 0.1)
+            play music "audio/bgm_ambient_horror.ogg"
+            call screen objective_text(chap2_objective_find_noah, 0.5, 0.3)
+            show screen objective_text(chap2_objective_find_noah, 0.93, 0.07)
             $ objective_find_noah = True
 
         else:

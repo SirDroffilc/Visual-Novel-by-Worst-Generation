@@ -20,8 +20,8 @@ label prologue:
     "...the emptiness hiding beneath."
     pause 2.0
     scene bg room101_2 with fade
-    stop sound
-    play music "audio/bgm_dark_quiet.ogg"
+    stop sound fadeout 2.0
+    play music "audio/bgm_dark_quiet.ogg" fadein 2.0
     pause
     
     "…Wh-where the hell am I?"

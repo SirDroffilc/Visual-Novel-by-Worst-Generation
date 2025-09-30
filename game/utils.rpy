@@ -1,9 +1,9 @@
 init python:
     # Set default volume for all main channels
-    renpy.music.set_volume(1.0, channel="music")
-    renpy.music.set_volume(1.0, channel="sound")
-    renpy.music.set_volume(1.0, channel="voice")
-    renpy.music.set_volume(1.0, channel="movie")
+    renpy.music.set_volume(0.8, channel="music")
+    renpy.music.set_volume(0.8, channel="sound")
+    renpy.music.set_volume(0.8, channel="voice")
+    renpy.music.set_volume(0.8, channel="movie")
 
     placed = {
         "piece_1": False,
