@@ -423,7 +423,7 @@ label main_room1:
         ethan "This is creepy."
         ethan "Wait… is that the key card for the elevator?"
         call set_keycard_clicked(False)
-        show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.5, zoom_size=1.0, clickable=True)
+        show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.38, zoom_size=0.05, clickable=True)
         while not keycard_clicked:
             "{i}Take the Key Card{/i}"
 
@@ -537,7 +537,6 @@ label future_travel:
     hide 28
     play sound "audio/voice_strangle4.ogg"
     "Ghhck"
-    pause
     play sound "audio/sfx_transition.ogg"
     scene black with Fade(0.5, 1.0, 0.5, color="#fff")
     pause 2.0
@@ -557,7 +556,6 @@ label future_travel:
     scene coffin2
     "LET ME OUT!!!"
     "AAAAAAAGGGGHHH"
-    scene white with fade
     $ renpy.music.set_volume(0.4, delay=0.0, channel='sfxloop')
     scene bg funeral3 with hpunch
     "I'm out of the coffin... but I can still see my body struggling inside, trying to get out."
@@ -582,7 +580,7 @@ label future_travel:
     stop sfxloop fadeout 2.0
     stop music fadeout 1.0
     $ renpy.music.set_volume(0.8, delay=0.0, channel='sfxloop')
-    scene white with fade
+    scene bg white with fade
     $ future_travel_done = True
 
     jump main_room1

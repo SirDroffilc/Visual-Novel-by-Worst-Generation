@@ -1,30 +1,36 @@
 label chapter3:
     hide screen objective_text
+    scene black
     
     show screen chapter_title_text("Chapter 3 Turning Point")
     pause 3.0
     hide screen chapter_title_text
     show screen chapter_label_screen(3) 
     
-    "go straight toward main room animation"
-    "banging sfx"
-    ethan "Please... open! {size=+10}OPEN!{/size}"
-    ethan "Come on, come on... why won't you open?!"
-    ethan "{size=+20}FUCK!{/size}"
-    ethan "Haaa... haaa..."
-    ethan "Calm down... it's no good. I'll have to find the key again."
+    $ renpy.movie_cutscene("videos/run_to_mainroom.webm")
+    play music "audio/bgm_horror_atmosphere.ogg"
+    scene bg mainroom3_close
+    play sfxloop "audio/sfx_door_banging.ogg"
+    "Please... open! {size=+10}OPEN!{/size}"
+    "Come on, come on... why won't you open?!"
+    stop sfxloop
+    "{size=+20}FUCK!{/size}"
+    "Haaa... haaa..."
+    "Calm down... it's no good. I'll have to find the key again."
 
     jump f3_p1
 
 label elevator3:
-    scene bg darkroom with fade
+    scene bg elevator with fade
 
     if not key_card3_acquired:
-        "Access Denied. 3F Key Card Required."
+        play sound "audio/sfx_elevator_locked.ogg"
+        "{i}Access Denied. F2 Key Card Required.{/i}"
         ethan "Figures."
         jump f3_p1
 
     else:
+        play sound "audio/sfx_elevator_unlock.ogg"
         ethan "What's next?"
         hide screen objective_text
         hide screen chapter_label_screen
@@ -35,7 +41,7 @@ label f3_p1:
 
     if not objective_find_main_key3_flag:
         call screen objective_text(chap3_objective_find_main_key)
-        show screen objective_text(chap3_objective_find_main_key, 0.98, 0.1)
+        show screen objective_text(chap3_objective_find_main_key, 0.93, 0.07)
         $ objective_find_main_key3_flag = True
 
     while True:
@@ -51,14 +57,14 @@ label f3_p2:
         pause
         
 label room301: # Storage Room
-    scene bg darkroom with fade
+    scene bg room301 with fade
 
     if not key_card3_acquired:
-        ethan "Ugh, dust everywhere... just boxes stacked on top of each other."
+        "Ugh, dust everywhere... just boxes stacked on top of each other."
         if not main_key3_acquired:
-            ethan "Nothing useful... maybe I should check the other rooms."
+            "Nothing useful... maybe I should check the other rooms."
     else:
-        ethan "I should get out of here."
+        "I should get out of here."
 
     call set_back_btn_clicked(False)
     show screen back_btn
@@ -68,14 +74,14 @@ label room301: # Storage Room
     jump f3_p1
 
 label room302: # Living Room
-    scene bg darkroom with fade
+    scene bg room302 with fade
     if not key_card3_acquired:
-        ethan "This looks... familiar, like someone actually lived here."
-        ethan "A sofa... a TV that doesn't work anymore... broken remote on the floor."
+        "This looks... familiar, like someone actually lived here."
+        "A sofa... a TV that doesn't work anymore... broken remote on the floor."
         if not main_key3_acquired:
-            ethan "...but no key."
+            "...but no key."
     else:
-        ethan "I should get out of here."
+        "I should get out of here."
 
     call set_back_btn_clicked(False)
     show screen back_btn
@@ -85,7 +91,7 @@ label room302: # Living Room
     jump f3_p1
 
 label room303: # Game Room
-    scene bg darkroom with fade
+    scene bg room303 with fade
 
     if not key_card3_acquired:
         if not guessing_game_won:
@@ -93,23 +99,28 @@ label room303: # Game Room
                 "An arcade machine?"
             else:
                 "Let's try this again..."
-            "one arcade machine turns on"
             jump guessing_mini_game
         elif not main_key3_acquired:
-            "key dropping from the arcade machine"
-            "...the key."
             "What are all these games for?"
-            "Main Key Acquired."
+            play sound "audio/sfx_object_dropped.ogg"
+            pause
+            show screen main_key(filepath="keys/key3.png", x=0.2, y=0.4, zoom_size=1.0, clickable=False) with dissolve
+            "...the key."
+            show screen main_key(filepath="keys/key3.png", x=0.2, y=0.4, zoom_size=1.0, clickable=True)
+            call set_main_key_clicked(False)
+            while not main_key_clicked:
+                "{i}Take the Main Key.{/i}"
+            "{i}Main Key Acquired.{/i}"
             $ main_key3_acquired = True
 
-            call screen objective_text(chap3_objective_go_main_room)
-            show screen objective_text(chap3_objective_go_main_room, 0.98, 0.1)
+            call screen objective_text(chap3_objective_go_main_room, 0.5, 0.4)
+            show screen objective_text(chap3_objective_go_main_room, 0.93, 0.07)
             
         else:
-            ethan "I already got the key from this stupid machine."
+            "I already got the key from this stupid machine."
         
     else:
-        ethan "I should get out of here."
+        "I should get out of here."
     
     call set_back_btn_clicked(False)
     show screen back_btn
@@ -119,6 +130,7 @@ label room303: # Game Room
     jump f3_p2
 
 label guessing_mini_game:
+    hide screen objective_text
     scene bg guessing with fade
     play music "audio/retro_bgm.ogg"
     if not tried_guessing:
@@ -146,7 +158,7 @@ label guessing_mini_game:
     while not answer_correct and clue_number <= 5:
         if clue_number == 5:
             stop music
-            play sound "audio/slamdunk_op_cut.ogg" volume 0.4
+            play sound "audio/bgm_slamdunk_op_cut.ogg" volume 0.4 fadein 1.0
 
         show screen mini_game_clue(clue_number)
 
@@ -155,7 +167,6 @@ label guessing_mini_game:
             $ answer = renpy.input("Answer: ")
             if not isinstance(answer, str):
                 $ answer = ""   # Force back to empty so it loops again
-
 
         call check_answer(answer)
         if not answer_correct:
@@ -171,21 +182,32 @@ label guessing_mini_game:
         "..."
         play sound "audio/retro_win.ogg"
         scene bg guessing_won
+        pause
+        show ethan scared at sprite_slide_from_left
         ethan "That..."
-        ethan "That... was Noah's..."
+        ethan "That... was our..."
+        show ethan terrified with vpunch
         ethan "DON'T FUCK WITH ME!"
+        show ethan terrified with vpunch
         ethan "WHO'S BEHIND THIS?!"
+        show ethan terrified with vpunch
         ethan "WHY ARE YOU DOING THIS?!"
+        show ethan crying_heavy with Dissolve(0.2)
         ethan "...I"
         ethan "...I-I just want to get out of here."
+        hide ethan with Dissolve(0.5)
+        hide frame_overlay with Dissolve(0.5)
         $ guessing_game_won = True
     else:
         "..."
         play sound "audio/retro_lose.ogg"
         scene bg guessing_lost
+        pause
         ethan "What's the answer?"
         ethan "Are there any more clues?"
         ethan "Maybe in the other rooms..."
+        show screen objective_text(chap3_objective_find_main_key, 0.93, 0.07)
+        jump f3_p2
 
     stop sound
     play sound "audio/retro_game_over.ogg"
@@ -200,39 +222,36 @@ label main_room3:
         ethan "It's locked. I better search the other rooms for the key."
         jump f3_p2
     
-    
-
     if not present_travel_done:
-        scene bg darkroom with fade
+        scene bg mainroom3 with fade
+        show screen keycard(filepath="keys/keycard3.png", x=0.5, y=0.4, zoom_size=0.05, clickable=False)
         call set_keycard_clicked(False)
-        ethan "Please... don't be another nightmare."
-
+        pause
+        "A hospital bed..."
+        "What is this place really for?"
+        "The key card..."
+        "Please... don't be another nightmare."
+        show screen keycard(filepath="keys/keycard3.png", x=0.5, y=0.4, zoom_size=0.05, clickable=True)
         while not keycard_clicked:
-            show screen f3_keycard
-            pause
+            "{i}Take the Key Card{/i}"
         
-        hide screen f3_keycard
+        hide screen keycard
+        hide screen objective_text
         jump present_travel
 
     elif not key_card3_acquired:
-        scene bg darkroom with Fade(1.0, 1.0, 1.0, color="#fff")
+        scene bg mainroom3 with Fade(0.5, 1.0, 0.5, color="#fff")
         ethan "...back again, but this time feels..."
         ethan "...different."
         ethan "I know what I need to do now."
 
-        call set_keycard_clicked(False)
-        while not keycard_clicked:
-            show screen f3_keycard
-            pause
-        
-        hide screen f3_keycard
         $ key_card3_acquired = True
-        "Key Card Acquired"
+        "{i}Key Card Acquired{/i}"
         call screen objective_text(chap3_objective_go_elevator)
-        show screen objective_text(chap3_objective_go_elevator, 0.98, 0.1)
+        show screen objective_text(chap3_objective_go_elevator, 0.93, 0.07)
 
     else:
-        scene bg darkroom with fade
+        scene bg mainroom3 with fade
         ethan "I have the key card. I should hurry to the elevator."
 
     call set_back_btn_clicked(False)
