@@ -273,12 +273,87 @@ label main_room3:
     jump f3_p2
 
 label present_travel:
-    hide screen objective_text
-    scene black with Fade(1.0, 1.0, 1.0, color="#fff")
-    
-    "PRESENT TRAVEL"
-    "GHOST MODE"
-    "BLA BLA BLA"
+    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
+    "Finally."
+    "Please, don't be another nightmare..."
+    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
+
+    show ethan_room 
+    "Th-this is my room."
+    "Wait... is this real? Am I really back?"
+    hide ethan_room
+
+    show bedroom_2
+    "..."
+    hide bedroom_2
+
+    show cant_touch with fade
+    "Wh-what the-?"
+    "I can't touch anything."
+    "What's happening? Am I a ghost? Or is this another dream?"
+    hide cant_touch
+
+    "KNOCKING SFX"
+
+    show ethan_in_room_sad with fade
+    "That's me..."
+    "So this is the present..."
+    hide ethan_in_room_sad
+
+    show parents_cheering_him_up with fade
+    "Mom... Dad..."
+    "They... They stayed by my side. Even when I was at my worst."
+    "...I thought I was just a burden. But they never left me..."
+    hide parents_cheering_him_up with fade
+
+    show brother_cheering_him_up with fade
+    "My brother... always there trying to distract and cheer me up."    
+    "He never blamed me, even when I shut him out."
+    "I couldn't even see it back then..."
+    hide brother_cheering_him_up with fade
+
+    show friends_cheering_him_up with fade
+    "My phone... always buzzing with messages from my friends."
+    "They never gave up on me, even when I ignored them."
+    "Some of them even came to visit me..."
+    "They worried about me... and cared... even when I kept telling them and myself I don't deserve them."
+    hide friends_cheering_him_up with fade
+
+    scene black with Fade(1.0 , 1.0, 1.0, color="#000")
+    "All of them...they cared... they showed me love and patience... even during the worst times of my life."
+    pause 1.0
+
+    show mom_handing_casette with fade
+    "That's when Mom handed me Ethan's casette tape..."
+    hide mom_handing_casette with fade
+
+    show ethan_listening_to_casette with fade
+    "I remember listening to it at that time..."
+    hide ethan_listening_to_casette
+
+    show ethan_leaving_the_room
+    "..."
+    hide ethan_leaving_the_room
+
+    show room_with_casette
+    "..."
+    "Wait... Why is the casette still playing?"
+    "I didn't know about this part..."
+    "NOAH'S MESSAGE"
+    "MC CRYING SFX ADD IT PLS UNTIL THE FLASHBANG AFTER HIS INTERNAL MESSAGE"
+    hide room_with_casette with fade
+
+    scene black with Fade(1.0 , 1.0, 1.0, color="#000")
+    "All this time... I thought I was the problem..."
+    "I hated myself. I blamed myself for everything..."
+    "But they didn't."
+    "They never did."
+    "The only person who couldn't forgive me... was me."
+    "DEEP BREATH SFX"
+    "It's time to let go and forgive myself."
+    "This time... I will move forward."
+
+    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
 
     $ present_travel_done = True
     jump main_room3
