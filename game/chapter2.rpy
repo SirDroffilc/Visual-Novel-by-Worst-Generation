@@ -403,6 +403,8 @@ label noah_revelation:
     "I knew this place wasn't kind enough to just let me relive our high school memories."
     scene bg room203_4 with hpunch
     "The moment I saw him on this floor… I knew."
+    "I knew he couldn't possibly be real."
+    "I knew that this place was just treating me like.. a {b}fool{/b}. "
     "I knew I wasn't allowed to be happy. Not after everything I've done."
     "Noah..."
     scene bg room203_4 with hpunch

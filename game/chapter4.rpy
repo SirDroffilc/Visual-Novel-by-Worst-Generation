@@ -21,7 +21,6 @@ label rooftop:
     play sound "audio/sfx_door_unlock.ogg"
     play sound "audio/sfx_accident.ogg"
     scene bg white with Fade(1.0, 0.5, 1.0, color="#fff")
-    pause 2.0
 
     jump epilogue
 
@@ -79,7 +78,7 @@ label epilogue:
     "Noah... I'm studying to become a psychiatrist now."
     "I want to help people who were struggling the way you once were."
     "I couldn't be there for you back then... but I can be here for others now."
-    "Back then, I thought life was empty."
+    "When you died, I thought my life became empty."
     "A cracked gift box, with nothing inside."
     "I guess life really is a gift, not because it's perfect, but because it's fragile."
     "My life with you was a gift-one that I will treasure forever."
