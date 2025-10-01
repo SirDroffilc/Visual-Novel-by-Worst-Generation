@@ -117,17 +117,17 @@ label room101: # Empty Room (Starting Room)
                 hide screen puzzle_missing_pieces
                 show screen puzzle_missing_pieces_zoomed("101")
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
+                    show room101_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Found the pieces."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
+                    show room101_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Are these puzzle pieces? What are these for?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
+                    show room101_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Again? What are these pieces for?"
 
@@ -144,7 +144,7 @@ label room101: # Empty Room (Starting Room)
                     "No":
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
-                        hide frame_overlay with Dissolve(0.1)
+                        hide room101_overlay with Dissolve(0.1)
                         hide ethan with Dissolve(0.1)
                         show screen puzzle_missing_pieces("101", x=0.37, y=0.53, zoom_size=0.1, clickable=False)
                         call set_puzzle_missing_pieces_clicked(False)
@@ -152,7 +152,7 @@ label room101: # Empty Room (Starting Room)
         pause
     
     hide ethan with Dissolve(0.1)
-    hide frame_overlay with Dissolve(0.1)
+    hide room101_overlay with Dissolve(0.1)
     hide back_btn
     hide screen puzzle_missing_pieces
     hide screen puzzle_missing_pieces_zoomed
@@ -179,7 +179,7 @@ label room102: # Puzzle Room
             "...the other rooms, maybe?"
         
         else:
-            show frame_overlay at frame_slide_from_left
+            show room102_overlay at frame_slide_from_left
             show ethan default at sprite_slide_from_left
             ethan "This room looks totally different from the outside..."
             ethan "Wait... this... looks like the arcade I used to go to with a friend."
@@ -196,7 +196,7 @@ label room102: # Puzzle Room
             show screen objective_text(chap1_objective_puzzle_evt, 0.93, 0.07)
             $ puzzle_evt_flag = True
 
-            show frame_overlay at frame_slide_from_left
+            show room102_overlay at frame_slide_from_left
             show ethan confused at sprite_slide_from_left
             ethan "A jigsaw puzzle? Seriously?"
             show ethan smacked with Dissolve(0.1)
@@ -204,7 +204,7 @@ label room102: # Puzzle Room
             ethan "...fine."
 
             hide ethan with Dissolve(0.1)
-            hide frame_overlay with Dissolve(0.1)
+            hide room102_overlay with Dissolve(0.1)
     
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
@@ -237,17 +237,17 @@ label room103: # Office Room
                 hide screen puzzle_missing_pieces
                 show screen puzzle_missing_pieces_zoomed("103")
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
+                    show room103_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Found them."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
+                    show room103_overlay at frame_slide_from_left
                     show ethan default at sprite_slide_from_left
                     ethan "Are these puzzle pieces?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
+                    show room103_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "Another set of pieces? What are these for?"
 
@@ -265,7 +265,7 @@ label room103: # Office Room
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
                         hide ethan with Dissolve(0.1)
-                        hide frame_overlay with Dissolve(0.1)
+                        hide room103_overlay with Dissolve(0.1)
                         show screen puzzle_missing_pieces("103", x=0.08, y=0.43, zoom_size=0.12, clickable=False) 
                         call set_puzzle_missing_pieces_clicked(False)
 
@@ -303,17 +303,17 @@ label room104: # Messy Room
                 show screen puzzle_missing_pieces_zoomed("104")
 
                 if puzzle_evt_flag:
-                    show frame_overlay at frame_slide_from_left
+                    show room104_overlay at frame_slide_from_left
                     show ethan smile at sprite_slide_from_left
                     ethan "Oh, the pieces! There they are."
 
                 elif pieces_count <= 0:
-                    show frame_overlay at frame_slide_from_left
+                    show room104_overlay at frame_slide_from_left
                     show ethan default at sprite_slide_from_left
                     ethan "Are these puzzle pieces?"
 
                 else:
-                    show frame_overlay at frame_slide_from_left
+                    show room104_overlay at frame_slide_from_left
                     show ethan confused at sprite_slide_from_left
                     ethan "What's with all these puzzle pieces?"
 
@@ -330,7 +330,7 @@ label room104: # Messy Room
                         ethan "I'll leave them here."
                         hide screen puzzle_missing_pieces_zoomed
                         hide ethan with Dissolve(0.1)
-                        hide frame_overlay with Dissolve(0.1)
+                        hide room104_overlay with Dissolve(0.1)
                         show screen puzzle_missing_pieces("104", x=0.57, y=0.69, zoom_size=0.12, clickable=False) 
                         call set_puzzle_missing_pieces_clicked(False)
         
@@ -352,13 +352,13 @@ label puzzle_mini_game:
         "I already got the Main Key."
         jump f1_p1
 
-    show frame_overlay at frame_slide_from_left
+    show room102_overlay at frame_slide_from_left
     show ethan smile at sprite_slide_from_left
     ethan "I got all the pieces..."
     ethan "Let's give it a try."
 
     hide ethan with Dissolve(0.1)
-    hide frame_overlay with Dissolve(0.1)
+    hide room102_overlay with Dissolve(0.1)
     # Start the drag-and-drop puzzle
     scene bg puzzle_mini_game with fade
     $ set_placed_false()
@@ -416,6 +416,8 @@ label main_room1:
 
     if not future_travel_done:
         stop music fadeout 2.0
+        scene black with fade
+        pause 0.5 
         scene bg mainroom1 with fade
         show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.38, zoom_size=0.05, clickable=False)
         ethan "A bunch of alcohol, clothes, and… a coffin?"
@@ -440,6 +442,7 @@ label main_room1:
             jump f1_p2
     
         scene bg mainroom1 with Fade(0.5, 1.0, 0.5, color="#fff")
+        scene bg mainroom1 with vpunch
         "Haaa... haaa..."
         "Thi-this is the room before."
         "I'm... back?"

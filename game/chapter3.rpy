@@ -1,6 +1,7 @@
 label chapter3:
+    stop music fadeout 2.0
     hide screen objective_text
-    scene black
+    scene black with fade
     
     show screen chapter_title_text("Chapter 3 Turning Point")
     pause 3.0
@@ -8,13 +9,15 @@ label chapter3:
     show screen chapter_label_screen(3) 
     
     $ renpy.movie_cutscene("videos/run_to_mainroom.webm")
-    play music "audio/bgm_horror_atmosphere.ogg"
     scene bg mainroom3_close
+    play music "audio/bgm_horror_atmosphere.ogg"
     play sfxloop "audio/sfx_door_banging.ogg"
     "Please... open! {size=+10}OPEN!{/size}"
     "Come on, come on... why won't you open?!"
     stop sfxloop
-    "{size=+20}FUCK!{/size}"
+    scene bg mainroom3_close with vpunch
+    play sound "audio/sfx_door_slam.ogg"
+    "{size=+30}FUCK!{/size}"
     "Haaa... haaa..."
     "Calm down... it's no good. I'll have to find the key again."
 
@@ -97,11 +100,14 @@ label room303: # Game Room
         if not guessing_game_won:
             if not tried_guessing:
                 "An arcade machine?"
+                "I'm tired of this..."
             else:
                 "Let's try this again..."
             jump guessing_mini_game
         elif not main_key3_acquired:
             "What are all these games for?"
+            "What's this place?"
+            "Please... let me out..."
             play sound "audio/sfx_object_dropped.ogg"
             pause
             show screen main_key(filepath="keys/key3.png", x=0.2, y=0.4, zoom_size=1.0, clickable=False) with dissolve
@@ -134,7 +140,6 @@ label guessing_mini_game:
     scene bg guessing with fade
     play music "audio/retro_bgm.ogg"
     if not tried_guessing:
-        ethan "What's this?"
         ethan "\"Guessing Game\"?"
     else:
         ethan "I'm gettin' it right this time..."
@@ -142,7 +147,8 @@ label guessing_mini_game:
     pause
     if not tried_guessing:
         ethan "Five tries..."
-        ethan "...fine."
+        scene bg guessing_instructions with vpunch
+        ethan "WHY DO I HAVE TO DO THIS?!"
     call set_start_btn_clicked(False)
 
     while not start_btn_clicked:
@@ -183,6 +189,7 @@ label guessing_mini_game:
         play sound "audio/retro_win.ogg"
         scene bg guessing_won
         pause
+        show room303_overlay at frame_slide_from_left
         show ethan scared at sprite_slide_from_left
         ethan "That..."
         ethan "That... was our..."
@@ -195,8 +202,9 @@ label guessing_mini_game:
         show ethan crying_heavy with Dissolve(0.2)
         ethan "...I"
         ethan "...I-I just want to get out of here."
+        play music "audio/bgm_ambient_horror.ogg"
         hide ethan with Dissolve(0.5)
-        hide frame_overlay with Dissolve(0.5)
+        hide room303_overlay with Dissolve(0.5)
         $ guessing_game_won = True
     else:
         "..."
@@ -218,11 +226,14 @@ label guessing_mini_game:
 label main_room3:
     if not main_key3_acquired:
         $ from_locked_room = True
-        "door locked sfx"
+        play sound "audio/sfx_door_locked.ogg"
         ethan "It's locked. I better search the other rooms for the key."
         jump f3_p2
     
     if not present_travel_done:
+        play sound "audio/sfx_door_unlock.ogg"
+        scene black with fade
+        pause 0.5
         scene bg mainroom3 with fade
         show screen keycard(filepath="keys/keycard3.png", x=0.5, y=0.4, zoom_size=0.05, clickable=False)
         call set_keycard_clicked(False)

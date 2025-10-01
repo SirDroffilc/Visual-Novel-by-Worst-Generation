@@ -12,8 +12,9 @@ label splashscreen:
 label prologue:
     scene black
     play music "audio/sfx_heart_monitor.ogg"
+    pause
     "People talk about life as if it's a gift." 
-    "They wrap it in ribbons of meaning, tie it up with words like purpose, love, hope."
+    "They wrap it in ribbons of meaning, tie it up with words like purpose, love, or hope."
     stop music
     play sound "audio/sfx_heart_monitor_beep.ogg"
     "But I can't help but see the cracks in the wrapping..."
@@ -55,7 +56,7 @@ label prologue:
     scene bg c0_mainroom
     "This room looks important…"
     play sound "audio/sfx_door_locked.ogg"
-    "..."
+    pause
     "It's locked. What should I do? I need to get out of this place."
     
     jump chapter1

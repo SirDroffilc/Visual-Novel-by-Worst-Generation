@@ -304,7 +304,7 @@ screen navigation():
             idle "images/UI_main_menu/title_idle.png"
             hover "images/UI_main_menu/title_hover.png"
             xpos 560
-            ypos -40
+            ypos 0
             action NullAction()
 
         # Start Game Button
@@ -396,8 +396,11 @@ screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     tag menu
+    on "show" action Play("music", "audio/bgm_horror_atmosphere.ogg", fadein=2.0)
+    on "hide" action Stop("music", fadeout=2.0)
 
-    add gui.main_menu_background
+    add "gui/mainmenu/main_menu_background.png"
+    add TrackCursor("gui/mainmenu/main_menu_background.png", paramod=100, inverse=True) zoom 1.05
     add "gui/mainmenu/main_menu_eye_background.png"
     add TrackCursor("gui/mainmenu/main_menu_eye.png", paramod=50, inverse=False)
     add TrackCursor("gui/mainmenu/main_menu_MC.png", paramod=100, inverse=True) xpos -120 ypos 210

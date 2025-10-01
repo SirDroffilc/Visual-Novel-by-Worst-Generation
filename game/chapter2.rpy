@@ -38,7 +38,7 @@ label chapter2:
     show noah shocked at right:
         linear 0.1 xalign 0.9
     
-    show frame_overlay at frame_slide_from_left
+    show room201_overlay at frame_slide_from_left
     show ethan scared at sprite_slide_from_left
     ethan "No... Noah? But you..."
     show noah laughing with Dissolve(0.1)
@@ -77,7 +77,7 @@ label chapter2:
 
     hide noah with Dissolve(0.1)
     hide ethan with Dissolve(0.1)
-    hide frame_overlay with Dissolve(0.1)
+    hide room201_overlay with Dissolve(0.1)
     jump f2_p1
 
 label elevator2:
@@ -106,7 +106,7 @@ label f2_p1:
     $ from_locked_room = False
 
     if not objective_find_main_key_shown:
-        show frame_overlay at frame_slide_from_left
+        show hallway_overlay at frame_slide_from_left
         show ethan default at sprite_slide_from_left
         
         ethan "We need to get out of here, but there's no exit below. Someone wrote on the walls that the only way is up."
@@ -118,7 +118,7 @@ label f2_p1:
 
         hide noah with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
-        hide frame_overlay with Dissolve(0.1)
+        hide hallway_overlay with Dissolve(0.1)
         play music "audio/bgm_dark_quiet.ogg" fadein 1.0
         call screen objective_text(chap2_objective_find_main_key)
         show screen objective_text(chap2_objective_find_main_key, 0.93, 0.07)
@@ -233,7 +233,7 @@ label room201: # Music Room
                 show noah big_smile at right with Dissolve(0.2):
                     xalign 0.9
                 noah "There! We can use that ladder."
-                show frame_overlay at frame_slide_from_left
+                show room201_overlay at frame_slide_from_left
                 show ethan confused at sprite_slide_from_left
                 ethan "That ladder..."
                 show noah default with Dissolve(0.1)
@@ -244,7 +244,7 @@ label room201: # Music Room
                 ethan "Yeah..."
                 hide noah with Dissolve(0.1)
                 hide ethan with Dissolve(0.1)
-                hide frame_overlay with Dissolve(0.1)
+                hide room201_overlay with Dissolve(0.1)
                 $ ladder_acquired = True
                 hide screen ladder_layer
                 scene bg room201_3
@@ -314,14 +314,14 @@ label room203: # Noah's Room
         window hide
         jump f2_p5
 
-    if not (objective_find_noah and not noah_revelation_done):
+    if not (objective_find_noah and not noah_revelation_done) and not ladder_acquired:
         scene bg room203_1 with fade
 
     if not find_tall_evt_flag:
         show noah shocked at right with vpunch:
             xalign 0.9
         noah "Dude! This is…"
-        show frame_overlay at frame_slide_from_left
+        show room203_overlay at frame_slide_from_left
         show ethan confused at sprite_slide_from_left
         ethan "Your dorm room."
         noah "No way… This is insane. Why does this place look exactly like my dorm? Down to the mess on the desk, even?"
@@ -340,7 +340,7 @@ label room203: # Noah's Room
 
         hide noah with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
-        hide frame_overlay with Dissolve(0.1)
+        hide room203_overlay with Dissolve(0.1)
         call screen objective_text(chap2_objective_find_tall)
         show screen objective_text(chap2_objective_find_tall, 0.93, 0.07)
         $ find_tall_evt_flag = True
@@ -350,6 +350,7 @@ label room203: # Noah's Room
             jump noah_revelation
 
         elif main_key2_acquired:
+            scene bg room203_3 with fade
             ethan "We already got the key. Let's go to the main room."
         
         elif ladder_acquired:
@@ -389,54 +390,68 @@ label noah_revelation:
     stop music
     scene black with fade
     ethan "Noah? Are you there?"
-    play sound "audio/sfx_door_unlock.ogg"
-    pause 2.0
+    play sound "audio/sfx_door_creek.ogg"
+    pause 2.5
     play sound "audio/sfx_horror_sting.ogg"
     pause 0.3
     scene bg room203_4 with vpunch
     pause
-    
-    "(voice acting NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO"
+    "NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO, NO..."
 
     play music "audio/bgm_sad_horror.ogg"
     "I… I knew it."
     "I knew this place wasn't kind enough to just let me relive our high school memories."
+    scene bg room203_4 with hpunch
     "The moment I saw him on this floor… I knew."
     "I knew I wasn't allowed to be happy. Not after everything I've done."
+    "Noah..."
+    scene bg room203_4 with hpunch
     "Noah... took his life a year ago."
     "He never told me the full story-only that things at home were falling apart."
     "His parents were fighting. The house itself felt like it was crumbling."
     "And he was stuck in the middle."
 
+    scene bg room203_4 with hpunch
     "He left their house… and started staying in a dormitory. "
     "He stopped going to school…"
     "I thought it was just another rough patch… something he'd laugh off the next day."
     "...But he didn't."
     "After a week, I tried to visit him at his place..."
+    scene bg room203_4 with hpunch
     "...then I saw... {b}this{/b}."
 
     "I should've noticed."
     "The way he forced his smile."
     "The way his eyes always looked tired, even when he swore he was fine."
     "I should've asked. I should've stayed. I should've done something."
+    scene bg room203_4 with hpunch
     "...But I didn't."
     "I was too busy. Too wrapped up in my own world. Too blind to see he was drowning."
     "And now-he's gone."
 
+    scene bg room203_4 with hpunch
     "He needed me, and I WASN'T THERE!"
+    scene bg room203_4 with hpunch
     "DON'T TELL ME IT WASN'T MY FAULT-"
+    scene bg room203_4 with hpunch
     "BECAUSE IT IS!"
+    scene bg room203_4 with hpunch
     "DON'T TELL ME THERE WAS NOTHING I COULD'VE DONE-"
+    scene bg room203_4 with hpunch
     "BECAUSE THERE WAS!"
+    scene bg room203_4 with hpunch
     "I WAS THE CLOSEST PERSON TO HIM!"
+    scene bg room203_4 with hpunch
     "I SHOULD'VE SAVED HIM!"
+    scene bg room203_4 with hpunch
     "I'M THE ONE TO BLAME!"
     stop music fadeout 8.0
-    ""
+    pause
     "I... I didn't even go to his funeral..."
     "...couldn't even talk to his family."
     "I had no right."
     "I... I didn't do anything for him."
+    scene black with fade
 
     play music "audio/bgm_ambient_horror.ogg" fadein 2.0
 
@@ -503,6 +518,7 @@ label main_room2:
     else: # past travel done
         if not objective_find_noah:
             scene bg mainroom2_1 with Fade(0.5, 1.0, 0.5, color="#fff")
+            scene bg mainroom2_1 with vpunch
             "I-I'm... back?"  
             "That's it? It's over?"  
             "Hah... maybe it wasn't as bad as I thought."
@@ -521,7 +537,7 @@ label main_room2:
             $ objective_find_noah = True
 
         else:
-            scene bg darkroom with fade
+            scene bg mainroom2_1 with fade
             ethan "I need to find Noah."
 
         jump f2_p6
@@ -545,7 +561,6 @@ label past_travel:
     noah "Uhh, room? What are you talking about? Dude, are you still asleep?"
    
     scene bg run with Dissolve(0.2)
-    $ renpy.music.set_volume(0.2, delay=0.0, channel='sfxloop')
     play sound "audio/sfx_slap.ogg"
     show ethan run2_unif at left with hpunch
     "{size=+10}*SMACK!*{/size}"
@@ -555,7 +570,7 @@ label past_travel:
     noah "HAHAHA! Did that wake you up?"
     ethan "..."
     show ethan default_unif at left with Dissolve(0.1)
-    $ renpy.music.set_volume(0.05, delay=0.0, channel='sfxloop')
+    $ renpy.music.set_volume(0.3, delay=0.0, channel='sfxloop')
     "{i}Wait...{/i}"
     "{i}No, he's not the one I was just with in the facility.{/i}"
     "{i}...{/i}"
@@ -563,7 +578,8 @@ label past_travel:
     "{i}I guess... he's the Noah of this time.{/i}"
     "{i}I'm back in our high school days.{/i}"
 
-    $ renpy.music.set_volume(0.4, delay=0.0, channel='sfxloop')
+    $ renpy.music.set_volume(0.8, delay=0.0, channel='sfxloop')
+    
     show noah run1_unif at right with Dissolve(0.1)
     noah "JUST FIVE MORE MINUTES! DUDE, HURRY UP!"
 
@@ -577,7 +593,7 @@ label classroom:
     scene bg classroom1 with fade
     show ethan observing_unif at center with dissolve
     show ethan observing_unif at left with move
-    ethan "We just attended the lecture for the first period. Nothing strange has happened yet." 
+    "{i}We just attended the lecture for the first period. Nothing strange has happened yet{/i}." 
     show ethan default_unif with Dissolve(0.1)
     show noah bored_unif at right with Dissolve(0.1)
     noah "Ughh, that was boring. Why do we gotta learn about a bunch of dead guys?"
