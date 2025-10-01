@@ -7,8 +7,8 @@ init python:
     )
     # Set default volume for all main channels
     renpy.music.set_volume(0.8, channel="music")
-    renpy.music.set_volume(0.8, channel="sound")
-    renpy.music.set_volume(0.8, channel="sfxloop")
+    renpy.music.set_volume(1.5, channel="sound")
+    renpy.music.set_volume(1.2, channel="sfxloop")
     renpy.music.set_volume(0.8, channel="voice")
     renpy.music.set_volume(0.8, channel="movie")
 

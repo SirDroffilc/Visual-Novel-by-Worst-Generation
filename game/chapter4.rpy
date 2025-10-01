@@ -79,7 +79,7 @@ label epilogue:
     "I want to help people who were struggling the way you once were."
     "I couldn't be there for you back then... but I can be here for others now."
     "When you died, I thought my life became empty."
-    "A cracked gift box, with nothing inside."
+    "A cracked gift box, with nothing inside." 
     "I guess life really is a gift, not because it's perfect, but because it's fragile."
     "My life with you was a gift-one that I will treasure forever."
     jump ending

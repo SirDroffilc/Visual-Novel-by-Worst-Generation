@@ -101,7 +101,11 @@ label f2_p1:
         scene bg f2p1 with fade
     
     if objective_go_elevator2 and not from_locked_room:
-        ethan "The elevator..."
+        show hallway_overlay at frame_slide_from_left
+        show ethan breaking_down_into_tears at sprite_slide_from_left
+        ethan "Let me out..."
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
 
     $ from_locked_room = False
 
@@ -134,13 +138,17 @@ label f2_p2:
         scene bg f2p2 with fade
     
     if objective_go_elevator2 and not from_locked_room:
-        ethan "Hurry..."
-    
+        show hallway_overlay at frame_slide_from_left
+        show ethan breaking_down_into_tears at sprite_slide_from_left
+        ethan "Please..."
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
     $ from_locked_room = False
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
         show screen f2_p2_buttons
         pause
+
     jump f2_p1
 
 label f2_p3:
@@ -148,12 +156,17 @@ label f2_p3:
         scene bg f2p3 with fade
     
     if objective_go_elevator2 and not from_locked_room:
+        show hallway_overlay at frame_slide_from_left
+        show ethan breaking_down_into_tears at sprite_slide_from_left
         ethan "Please... Let me get out of here..."
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
     $ from_locked_room = False
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
         show screen f2_p3_buttons
         pause
+
     jump f2_p2
 
 label f2_p4:
@@ -161,12 +174,17 @@ label f2_p4:
         scene bg f2p4 with fade
 
     if objective_go_elevator2 and not from_locked_room:
+        show hallway_overlay at frame_slide_from_left
+        show ethan crying_heavy at sprite_slide_from_left
         ethan "No... Noah..."
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
     $ from_locked_room = False
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
         show screen f2_p4_buttons
         pause
+
     jump f2_p3
 
 label f2_p5:
@@ -174,12 +192,18 @@ label f2_p5:
         scene bg f2p5 with fade
     
     if objective_go_elevator2 and not from_locked_room:
+        show hallway_overlay at frame_slide_from_left
+        show ethan breaking_down_into_tears at sprite_slide_from_left
         ethan "W-why is this happening to me?"
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
     $ from_locked_room = False
     call set_back_btn_clicked(False)
     while not back_btn_clicked:
         show screen f2_p5_buttons
         pause
+
+
     jump f2_p4
 
 label f2_p6:
@@ -187,7 +211,11 @@ label f2_p6:
         scene bg f2p6 with fade
     
     if objective_go_elevator2 and not from_locked_room:
+        show hallway_overlay at frame_slide_from_left
+        show ethan crying_heavy at sprite_slide_from_left
         ethan "Please let me out of here..."
+        hide hallway_overlay with Dissolve(0.1)
+        hide ethan with Dissolve(0.1)
 
     $ from_locked_room = False
 
@@ -491,6 +519,7 @@ label main_room2:
         "The door crashed shut behind me, echoing through the room."
         stop sound
         scene bg f2p6 with fade
+        scene bg f2p6 with vpunch
         show noah scared at left with Dissolve(0.1)
         noah "Ethan! Are you good?"
         ethan "{i}Yeah, I'm fine!{/i}"

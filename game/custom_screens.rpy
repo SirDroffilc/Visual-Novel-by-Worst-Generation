@@ -658,7 +658,7 @@ screen f3_p1_buttons:
 
     hbox: # Go Forward
         xalign 0.5
-        yalign 0.62
+        yalign 0.2
         spacing 0
 
         imagebutton:

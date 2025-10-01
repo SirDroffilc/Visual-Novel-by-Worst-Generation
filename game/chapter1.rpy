@@ -21,7 +21,7 @@ label elevator1:
     else:
         play sound "audio/sfx_elevator_unlock.ogg"
         hide screen chapter_label_screen
-        pause 2.0
+        pause 1.0
         jump chapter2
 
 label f1_p1:
@@ -403,7 +403,7 @@ label main_room1:
     if not main_key1_acquired:
         $ from_locked_room = True
         play sound "audio/sfx_door_locked.ogg"
-        "..."
+        pause
         if puzzle_evt_flag:
             if all_pieces_obtained:
                 "It's locked. But, I have all the pieces now. Solving the puzzle might give me a clue."
@@ -416,6 +416,7 @@ label main_room1:
 
     if not future_travel_done:
         stop music fadeout 2.0
+        play sound "audio/sfx_door_unlock.ogg"
         scene black with fade
         pause 0.5 
         scene bg mainroom1 with fade
@@ -441,7 +442,7 @@ label main_room1:
             "I already have the Key Card for the elevator. I better get out of here."
             jump f1_p2
     
-        scene bg mainroom1 with Fade(0.5, 1.0, 0.5, color="#fff")
+        scene bg mainroom1 with Fade(0.5, 0.5, 0.5, color="#fff")
         scene bg mainroom1 with vpunch
         "Haaa... haaa..."
         "Thi-this is the room before."
@@ -515,8 +516,8 @@ label future_travel:
     hide 22
     "I'm losing... consciousness..."
     play sound "audio/sfx_transition.ogg"
-    scene black with Fade(0.5, 1.0, 0.5, color="#fff")
-    scene 21 
+    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
+    scene 21 with Fade(0.1, 0.1, 0.1, color="#fff")
     "What now?"
     "I look like I'm preparing to go out"
     show 24 with fade
@@ -583,7 +584,7 @@ label future_travel:
     stop sfxloop fadeout 2.0
     stop music fadeout 1.0
     $ renpy.music.set_volume(0.8, delay=0.0, channel='sfxloop')
-    scene bg white with fade
+    scene bg white with Fade(0.2, 0.2, 0.2, color="#fff")
     $ future_travel_done = True
 
     jump main_room1
