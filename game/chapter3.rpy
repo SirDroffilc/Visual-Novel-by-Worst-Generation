@@ -15,8 +15,9 @@ label chapter3:
     "Please... open! {size=+10}OPEN!{/size}"
     "Come on, come on... why won't you open?!"
     stop sfxloop
-    scene bg mainroom3_close with vpunch
     play sound "audio/sfx_door_slam.ogg"
+    pause 0.2
+    scene bg mainroom3_close with vpunch
     "{size=+30}FUCK!{/size}"
     "Haaa... haaa..."
     "Calm down... it's no good. I'll have to find the key again."
@@ -35,6 +36,7 @@ label elevator3:
     else:
         play sound "audio/sfx_elevator_unlock.ogg"
         ethan "What's next?"
+        stop music fadeout 2.0
         hide screen objective_text
         hide screen chapter_label_screen
         jump rooftop
@@ -273,86 +275,107 @@ label main_room3:
     jump f3_p2
 
 label present_travel:
-    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
-    "Finally."
-    "Please, don't be another nightmare..."
-    scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
-
-    show ethan_room 
-    "Th-this is my room."
+    stop music
+    play sound "audio/sfx_transition.ogg"
+    scene ethan_room with Fade(0.5, 1.0, 0.5, color="#fff")
+    scene ethan_room with vpunch
+    pause
+    play music "audio/bgm_ambient_horror.ogg" volume 0.5 fadein 1.0
+    "Th-this is... my room."
     "Wait... is this real? Am I really back?"
-    hide ethan_room
-
-    show bedroom_2
-    "..."
-    hide bedroom_2
-
-    show cant_touch with fade
-    "Wh-what the-?"
-    "I can't touch anything."
-    "What's happening? Am I a ghost? Or is this another dream?"
-    hide cant_touch
-
-    "KNOCKING SFX"
-
-    show ethan_in_room_sad with fade
-    "That's me..."
-    "So this is the present..."
-    hide ethan_in_room_sad
-
-    show parents_cheering_him_up with fade
+    
+    scene bg ghost_hands2 with Dissolve(0.3)
+    pause
+    "I..."
+    "I... can't touch anything..."
+    "My hands... no, my whole body..."
+    scene bg ghost_hands with Dissolve(0.3)
+    pause
+    "What's this? What's happening?"
+    "I see through myself... is this another dream?"
+    play sound "audio/sfx_door_unlock.ogg"
+    pause 1.0
+    scene ethan_in_room_sad with Dissolve(0.3)
+    "That's... me."
+    "What's going on?"
+    "Is this... the present?"
+    "I look like... no... I still am... depressed about what happened to Noah."
+    play sound "audio/sfx_door_knock.ogg"
+    scene black with Fade(0.2, 0.8, 0.2)
+    scene parents_cheering_him_up with Dissolve(0.3)
+    stop music fadeout 2.0
+    pause
     "Mom... Dad..."
-    "They... They stayed by my side. Even when I was at my worst."
-    "...I thought I was just a burden. But they never left me..."
-    hide parents_cheering_him_up with fade
+    play music "audio/bgm_sad_music2.ogg" fadein 2.0
+    "Yeah... I know..."
+    "They stayed by my side, especially when I was at my worst."
+    "They're considerate... sensitive about what I feel."
+    "But during this time... I know I'm not even thinking about them."
+    "My mind was just filled with self-loathing... that I couldn't even save my friend."
+    "But... seeing them this way... they really are wonderful people."
+    "I'm just a burden... I don't deserve them."
 
-    show brother_cheering_him_up with fade
-    "My brother... always there trying to distract and cheer me up."    
-    "He never blamed me, even when I shut him out."
-    "I couldn't even see it back then..."
-    hide brother_cheering_him_up with fade
+    scene brother_cheering_him_up with Dissolve(0.3)
+    pause
+    "That's Nathan... my brother."
+    "Yeah, he's always there trying to cheer me up to distract me from blaming myself."
+    "I remember yelling at him, shutting him out a few times..."
+    "But he never stopped talking to me... or inviting me to play video games, or to go out with him..."
+    "I couldn't even see it back then... he's the best brother anyone could have."
 
-    show friends_cheering_him_up with fade
+    scene friends_cheering_him_up with Dissolve(0.3)
+    pause
     "My phone... always buzzing with messages from my friends."
     "They never gave up on me, even when I ignored them."
     "Some of them even came to visit me..."
-    "They worried about me... and cared... even when I kept telling them and myself I don't deserve them."
-    hide friends_cheering_him_up with fade
+    "They were worried about me... and cared... even when I kept telling them off."
 
-    scene black with Fade(1.0 , 1.0, 1.0, color="#000")
-    "All of them...they cared... they showed me love and patience... even during the worst times of my life."
-    pause 1.0
+    "All of them...they cared..." 
+    "They put up with my miserable self..."
+    "They showed me love and patience... even during the worst times of my life."
+    scene mom_handing_casette with fade
+    pause
+    "That's..."
+    "That's... Noah's tape."
+    "It was his final message before taking his life."
 
-    show mom_handing_casette with fade
-    "That's when Mom handed me Ethan's casette tape..."
-    hide mom_handing_casette with fade
+    scene ethan_listening_to_casette with Dissolve(0.3)
+    "It was a heartfelt message for his family... and friends..."
 
-    show ethan_listening_to_casette with fade
-    "I remember listening to it at that time..."
-    hide ethan_listening_to_casette
-
-    show ethan_leaving_the_room
-    "..."
-    hide ethan_leaving_the_room
-
-    show room_with_casette
-    "..."
-    "Wait... Why is the casette still playing?"
+    scene ethan_leaving_the_room with Dissolve(0.3)
+    "When I hear his voice... I just become more and more depressed."
+    "And that feeling... eventually turns into blame."
+    scene room_with_casette with Dissolve(0.3)
+    pause
+    "I just left..."
+    stop music fadeout 2.0
+    "I was so overwhelmed that I couldn't even finish hearing his last words..."
+    scene bg cassette with Dissolve(0.5)
+    pause 1.5
+    "Is that..."
     "I didn't know about this part..."
-    "NOAH'S MESSAGE"
-    "MC CRYING SFX ADD IT PLS UNTIL THE FLASHBANG AFTER HIS INTERNAL MESSAGE"
-    hide room_with_casette with fade
 
-    scene black with Fade(1.0 , 1.0, 1.0, color="#000")
+    play music "audio/bgm_sad_music.ogg"
+    noah "Hey, man."
+    noah "I wanted to take a moment to say goodbye." 
+    noah "This is not an easy decision, and it's not because of anything you did..."
+    noah "It's just things became... too much complicated."
+    noah "You've been an important part of my life, a great friend..."
+    noah "I'll always appreciate the moments we shared."
+    noah "I'm really sorry..."
+    noah "Even though our paths are going separate ways, I truly wish you nothing but happiness."
+    noah "Don't be too harsh on yourself. It's not your fault... it never was."
+
+    scene room_with_casette with Dissolve(0.3)
     "All this time... I thought I was the problem..."
     "I hated myself. I blamed myself for everything..."
     "But they didn't."
     "They never did."
     "The only person who couldn't forgive me... was me."
-    "DEEP BREATH SFX"
     "It's time to let go and forgive myself."
+    "It's time to do the things I should have done long ago."
+    "It's time to set things right."
     "This time... I will move forward."
-
     scene bg white with Fade(0.5, 1.0, 0.5, color="#fff")
 
     $ present_travel_done = True

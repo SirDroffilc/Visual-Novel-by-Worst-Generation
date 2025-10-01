@@ -11,17 +11,22 @@ label splashscreen:
 
 label prologue:
     scene black
-    play music "audio/sfx_heart_monitor.ogg"
-    pause
+    
+    play sfxloop "audio/sfx_heart_monitor.ogg" volume 0.05
+    pause 2.0
+    play sound "audio/voice_prologue1.ogg"
     "People talk about life as if it's a gift." 
-    "They wrap it in ribbons of meaning, tie it up with words like purpose, love, or hope."
-    stop music
-    play sound "audio/sfx_heart_monitor_beep.ogg"
+    play sound "audio/voice_prologue2.ogg"
+    "They wrap it in ribbons of meaning, tie it up with words like purpose, love, and hope."
+    stop sfxloop
+    play sound "audio/voice_prologue3.ogg"
     "But I can't help but see the cracks in the wrapping..."
+    play sound "audio/voice_prologue4.ogg"
     "...the emptiness hiding beneath."
+    play sfxloop "audio/sfx_heart_monitor_beep.ogg" volume 0.2 noloop
     pause 2.0
     scene bg room101_2 with fade
-    stop sound fadeout 2.0
+    stop sfxloop fadeout 2.0
     play music "audio/bgm_dark_quiet.ogg" fadein 2.0
     pause
     

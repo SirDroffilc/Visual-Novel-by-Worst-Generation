@@ -14,7 +14,7 @@ label chapter2:
     "I swear, this place will make me go insane."
 
     play sound "audio/sfx_rummaging.ogg"
-
+    scene bg f2p1 with hpunch
     "What's that noise?"
     "It's coming from that room..."
     "Is someone there?"
@@ -31,6 +31,7 @@ label chapter2:
 
     stop music
     stop sound
+    play music "audio/bgm_ambient_horror.ogg" volume 0.3 fadein 2.0
     scene bg room201_1 with fade
     show noah shocked with vpunch
     pause
@@ -40,6 +41,7 @@ label chapter2:
     
     show room201_overlay at frame_slide_from_left
     show ethan scared at sprite_slide_from_left
+    
     ethan "No... Noah? But you..."
     show noah laughing with Dissolve(0.1)
     
@@ -118,6 +120,7 @@ label f2_p1:
         ethan "But before that, we need to find the key to the main room or something. I'm guessing that's where the key card is."
         show noah big_smile_thumbs_up at right with Dissolve(0.1):
             xalign 0.9
+        stop music fadeout 1.0
         noah "Gotcha."
 
         hide noah with Dissolve(0.1)
