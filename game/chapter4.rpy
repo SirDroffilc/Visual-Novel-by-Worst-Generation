@@ -1,6 +1,6 @@
 label rooftop:
     hide screen objective_text
-    play music "audio/bgm_peaceful_ambient.ogg" fadein 2.0
+    play sfxloop "audio/bgm_peaceful_ambient.ogg" fadein 2.0
     scene bg white with Fade(0.5, 1.0, 0.5, color="#dfdebb")
     "Am I... on a rooftop?"
     scene bg rooftop1 with Fade(0.5, 1.0, 0.5, color="#dfdebb")
@@ -17,7 +17,7 @@ label rooftop:
     "Still... I've come this far."
     scene bg rooftop3 with fade
     "There's no turning back now."
-    stop music fadeout 2.0
+    stop sfxloop fadeout 2.0
     play sound "audio/sfx_door_unlock.ogg"
     play sound "audio/sfx_accident.ogg"
     scene bg white with Fade(1.0, 0.5, 1.0, color="#fff")
@@ -69,18 +69,29 @@ label epilogue:
     pause
     scene grave_2 with Dissolve(0.5)
     pause
+    play sound "audio/voice_epilogue1.ogg"
     "Hey..."
-    "...I wanted to give this to you."
+    play sound "audio/voice_epilogue2.ogg"
+    "...I wanted to give you this."
     scene grave_3 with Dissolve(0.3)
     pause
+    play sound "audio/voice_epilogue3.ogg"
     "It's the manga of our favorite show, signed by the author himself."
+    play sound "audio/voice_epilogue4.ogg" 
     "One of my colleagues gave it to me as a gift. But I knew, right away, it belonged here. With you."
+    play sound "audio/voice_epilogue5.ogg"
     "Noah... I'm studying to become a psychiatrist now."
+    play sound "audio/voice_epilogue6.ogg"
     "I want to help people who were struggling the way you once were."
+    play sound "audio/voice_epilogue7.ogg"
     "I couldn't be there for you back then... but I can be here for others now."
+    play sound "audio/voice_epilogue8.ogg"
     "When you died, I thought my life became empty."
+    play sound "audio/voice_epilogue9.ogg"
     "A cracked gift box, with nothing inside." 
+    play sound "audio/voice_epilogue10.ogg"
     "I guess life really is a gift, not because it's perfect, but because it's fragile."
+    play sound "audio/voice_epilogue11.ogg"
     "My life with you was a gift-one that I will treasure forever."
     jump ending
 

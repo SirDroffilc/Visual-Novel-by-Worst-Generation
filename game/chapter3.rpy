@@ -356,14 +356,24 @@ label present_travel:
     "I didn't know about this part..."
 
     play music "audio/bgm_sad_music.ogg"
+    pause 1.0
+    play sound "audio/voice_cassette1.ogg"
     noah "Hey, man."
+    play sound "audio/voice_cassette2.ogg"
     noah "I wanted to take a moment to say goodbye." 
-    noah "This is not an easy decision, and it's not because of anything you did..."
+    play sound "audio/voice_cassette3.ogg"
+    noah "This wasn't an easy decision, and no, it's not because of anything you did..."
+    play sound "audio/voice_cassette4.ogg"
     noah "It's just things became... too much complicated."
+    play sound "audio/voice_cassette5.ogg"
     noah "You've been an important part of my life, a great friend..."
+    play sound "audio/voice_cassette6.ogg"
     noah "I'll always appreciate the moments we shared."
-    noah "I'm really sorry..."
-    noah "Even though our paths are going separate ways, I truly wish you nothing but happiness."
+    play sound "audio/voice_cassette7.ogg"
+    noah "I'm sorry..."
+    play sound "audio/voice_cassette8.ogg"
+    noah "But even though our paths are going separate ways, I truly wish you nothing but happiness."
+    play sound "audio/voice_cassette9.ogg"
     noah "Don't be too harsh on yourself. It's not your fault... it never was."
 
     scene room_with_casette with Dissolve(0.3)

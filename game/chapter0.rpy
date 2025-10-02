@@ -10,10 +10,10 @@ label splashscreen:
     return
 
 label prologue:
-    scene black
+    scene black  
     
     play sfxloop "audio/sfx_heart_monitor.ogg" volume 0.05
-    pause 2.0
+    pause 0.5
     play sound "audio/voice_prologue1.ogg"
     "People talk about life as if it's a gift." 
     play sound "audio/voice_prologue2.ogg"
