@@ -131,7 +131,7 @@ label f2_p1:
         show screen objective_text(chap2_objective_find_main_key, 0.93, 0.07)
         $ objective_find_main_key_shown = True
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_7
     while True:
         show screen f2_p1_buttons
         pause
@@ -147,7 +147,7 @@ label f2_p2:
         hide hallway_overlay with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
     $ from_locked_room = False
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_8
     while not back_btn_clicked:
         show screen f2_p2_buttons
         pause
@@ -165,7 +165,7 @@ label f2_p3:
         hide hallway_overlay with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
     $ from_locked_room = False
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_9
     while not back_btn_clicked:
         show screen f2_p3_buttons
         pause
@@ -183,7 +183,7 @@ label f2_p4:
         hide hallway_overlay with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
     $ from_locked_room = False
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_10
     while not back_btn_clicked:
         show screen f2_p4_buttons
         pause
@@ -201,7 +201,7 @@ label f2_p5:
         hide hallway_overlay with Dissolve(0.1)
         hide ethan with Dissolve(0.1)
     $ from_locked_room = False
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_11
     while not back_btn_clicked:
         show screen f2_p5_buttons
         pause
@@ -222,7 +222,7 @@ label f2_p6:
 
     $ from_locked_room = False
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_12
     while not back_btn_clicked:
         show screen f2_p6_buttons
         pause
@@ -255,8 +255,8 @@ label room201: # Music Room
     
     else:
         ethan "Something tall..."
-        call set_ladder_clicked(False)
-        call set_back_btn_clicked(False)
+        call set_ladder_clicked(False) from _call_set_ladder_clicked
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked_13
         show screen back_btn
         show screen ladder_layer
         while not back_btn_clicked:
@@ -286,7 +286,7 @@ label room201: # Music Room
         hide screen ladder_layer
         jump f2_p1
             
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_14
     show screen back_btn
     while not back_btn_clicked:
         pause
@@ -320,7 +320,7 @@ label room202: # Clasroom
         ethan "There's no way this is a coincidence. This place… it's like it's digging into our memories on purpose."
         ethan "It {i}wants{i} to mess with us."
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_15
     show screen back_btn
     while not back_btn_clicked:
         pause
@@ -385,12 +385,12 @@ label room203: # Noah's Room
             ethan "We already got the key. Let's go to the main room."
         
         elif ladder_acquired:
-            call room203_cutscene
+            call room203_cutscene from _call_room203_cutscene
             
     else:  
         noah "We need to find something taller than a chair or a desk."
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_16
     while not back_btn_clicked:
         show screen back_btn
         pause
@@ -539,7 +539,7 @@ label main_room2:
         ethan "The key card."
         ethan "Am I really going to go through that nightmare again?"
         ethan "I-I'm scared. But if we ever want to get out of here…"
-        call set_keycard_clicked(False)
+        call set_keycard_clicked(False) from _call_set_keycard_clicked_1
         show screen keycard(filepath="keys/keycard2.png", x=0.5, y=0.5, zoom_size=0.1, clickable=True) 
         while not keycard_clicked:
             "{i}Take the Key Card{/i}"

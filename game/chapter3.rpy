@@ -71,7 +71,7 @@ label room301: # Storage Room
     else:
         "I should get out of here."
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_17
     show screen back_btn
     while not back_btn_clicked:
         pause
@@ -88,7 +88,7 @@ label room302: # Living Room
     else:
         "I should get out of here."
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_18
     show screen back_btn
     while not back_btn_clicked:
         pause
@@ -115,7 +115,7 @@ label room303: # Game Room
             show screen main_key(filepath="keys/key3.png", x=0.2, y=0.4, zoom_size=1.0, clickable=False) with dissolve
             "...the key."
             show screen main_key(filepath="keys/key3.png", x=0.2, y=0.4, zoom_size=1.0, clickable=True)
-            call set_main_key_clicked(False)
+            call set_main_key_clicked(False) from _call_set_main_key_clicked_1
             while not main_key_clicked:
                 "{i}Take the Main Key.{/i}"
             "{i}Main Key Acquired.{/i}"
@@ -130,7 +130,7 @@ label room303: # Game Room
     else:
         "I should get out of here."
     
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_19
     show screen back_btn
     while not back_btn_clicked:
         pause
@@ -151,7 +151,7 @@ label guessing_mini_game:
         ethan "Five tries..."
         scene bg guessing_instructions with vpunch
         ethan "WHY DO I HAVE TO DO THIS?!"
-    call set_start_btn_clicked(False)
+    call set_start_btn_clicked(False) from _call_set_start_btn_clicked
 
     while not start_btn_clicked:
         show screen mini_game_start_btn
@@ -176,7 +176,7 @@ label guessing_mini_game:
             if not isinstance(answer, str):
                 $ answer = ""   # Force back to empty so it loops again
 
-        call check_answer(answer)
+        call check_answer(answer) from _call_check_answer
         if not answer_correct:
             "{size=+20}WRONG{/size}"
         if clue_number == 5:
@@ -238,7 +238,7 @@ label main_room3:
         pause 0.5
         scene bg mainroom3 with fade
         show screen keycard(filepath="keys/keycard3.png", x=0.5, y=0.4, zoom_size=0.05, clickable=False)
-        call set_keycard_clicked(False)
+        call set_keycard_clicked(False) from _call_set_keycard_clicked_2
         pause
         "A hospital bed..."
         "What is this place really for?"
@@ -267,7 +267,7 @@ label main_room3:
         scene bg mainroom3 with fade
         ethan "I have the key card. I should hurry to the elevator."
 
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_20
     while not back_btn_clicked:
         show screen back_btn
         pause

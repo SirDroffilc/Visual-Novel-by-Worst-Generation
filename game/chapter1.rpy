@@ -33,8 +33,8 @@ label f1_p1:
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.93, 0.07)
 
-        call set_back_btn_clicked(False)
-        call set_puzzle_missing_pieces_clicked(False)
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked
+        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked
 
         show screen f1_p1_buttons
         pause
@@ -52,8 +52,8 @@ label f1_p2:
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.93, 0.07)
 
-        call set_back_btn_clicked(False)
-        call set_puzzle_missing_pieces_clicked(False)
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked_1
+        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_1
 
         show screen f1_p2_buttons
         pause
@@ -69,8 +69,8 @@ label f1_p3:
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.93, 0.07)
 
-        call set_back_btn_clicked(False)
-        call set_puzzle_missing_pieces_clicked(False)
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked_2
+        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_2
 
         show screen f1_p3_buttons
         pause
@@ -86,8 +86,8 @@ label f1_p4:
             call screen objective_text(chap1_objective_go_puzzle_room)
             show screen objective_text(chap1_objective_go_puzzle_room, 0.93, 0.07)
 
-        call set_back_btn_clicked(False)
-        call set_puzzle_missing_pieces_clicked(False)
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked_3
+        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_3
 
         show screen f1_p4_buttons
         pause
@@ -107,8 +107,8 @@ label room101: # Empty Room (Starting Room)
     "Nothing's here-just a bed and a table with a bunch of random junk on top of it."
     window hide
 
-    call set_back_btn_clicked(False)
-    call set_puzzle_missing_pieces_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_4
+    call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_4
     while not back_btn_clicked:
         if not room101_pieces_taken:
             show screen puzzle_missing_pieces("101", x=0.37, y=0.53, zoom_size=0.1, clickable=True)
@@ -147,7 +147,7 @@ label room101: # Empty Room (Starting Room)
                         hide room101_overlay with Dissolve(0.1)
                         hide ethan with Dissolve(0.1)
                         show screen puzzle_missing_pieces("101", x=0.37, y=0.53, zoom_size=0.1, clickable=False)
-                        call set_puzzle_missing_pieces_clicked(False)
+                        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_5
         show screen back_btn
         pause
     
@@ -206,7 +206,7 @@ label room102: # Puzzle Room
             hide ethan with Dissolve(0.1)
             hide room102_overlay with Dissolve(0.1)
     
-    call set_back_btn_clicked(False)
+    call set_back_btn_clicked(False) from _call_set_back_btn_clicked_5
     while not back_btn_clicked:
         show screen back_btn
         pause
@@ -267,7 +267,7 @@ label room103: # Office Room
                         hide ethan with Dissolve(0.1)
                         hide room103_overlay with Dissolve(0.1)
                         show screen puzzle_missing_pieces("103", x=0.08, y=0.43, zoom_size=0.12, clickable=False) 
-                        call set_puzzle_missing_pieces_clicked(False)
+                        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_6
 
         pause
     
@@ -332,7 +332,7 @@ label room104: # Messy Room
                         hide ethan with Dissolve(0.1)
                         hide room104_overlay with Dissolve(0.1)
                         show screen puzzle_missing_pieces("104", x=0.57, y=0.69, zoom_size=0.12, clickable=False) 
-                        call set_puzzle_missing_pieces_clicked(False)
+                        call set_puzzle_missing_pieces_clicked(False) from _call_set_puzzle_missing_pieces_clicked_7
         
         pause
 
@@ -385,7 +385,7 @@ label puzzle_win:
 
     show screen main_key(filepath="keys/key1.png", x=0.25, y=0.4, zoom_size=1.0, clickable=False) with dissolve
     "It's the key..."
-    call set_main_key_clicked(False)
+    call set_main_key_clicked(False) from _call_set_main_key_clicked
 
     while not main_key_clicked:
         show screen main_key(filepath="keys/key1.png", x=0.25, y=0.4, zoom_size=1.0, clickable=True)
@@ -425,7 +425,7 @@ label main_room1:
         play music "audio/bgm_ambient_horror.ogg" fadein 1.0
         ethan "This is creepy."
         ethan "Wait… is that the key card for the elevator?"
-        call set_keycard_clicked(False)
+        call set_keycard_clicked(False) from _call_set_keycard_clicked
         show screen keycard(filepath="keys/keycard1.png", x=0.5, y=0.38, zoom_size=0.05, clickable=True)
         while not keycard_clicked:
             "{i}Take the Key Card{/i}"
@@ -460,7 +460,7 @@ label main_room1:
         show screen objective_text(chap1_objective_go_elevator, 0.93, 0.07)
 
         show screen back_btn
-        call set_back_btn_clicked(False)
+        call set_back_btn_clicked(False) from _call_set_back_btn_clicked_6
 
         while not back_btn_clicked:
             pause
