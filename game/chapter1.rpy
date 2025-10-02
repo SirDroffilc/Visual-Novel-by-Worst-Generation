@@ -189,7 +189,7 @@ label room102: # Puzzle Room
             show ethan confused with Dissolve(0.1)
             ethan "Wait... something's written on the wall."
             scene bg puzzle_room_2 with fade
-            "\"Assemble the pieces\"?"
+            "\"Complete the puzzle\"?"
             hide ethan with dissolve
             
             call screen objective_text(chap1_objective_puzzle_evt)
