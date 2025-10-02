@@ -12,8 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("worstgen_forge")
-
+define config.name = _("Closed;Open")
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
@@ -37,7 +36,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "worstgen_forge"
+define build.name = "ClosedOpen"
 
 
 ## Sounds and music ############################################################
