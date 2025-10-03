@@ -1,7 +1,14 @@
 screen splash_screen():
     add Movie(play="gui/splashscreen.webm", loop=False, size=(650, 650)) xalign 0.5 yalign 0.5
+    
+screen warning_screen(txt):
+    text txt:
+        xalign 0.5
+        yalign 0.5
+        text_align 0.5
+        size 30
+        color "#FFFFFF"
 
-# custom screens created 
 
 screen after_some_time_text(txt):
     text txt:

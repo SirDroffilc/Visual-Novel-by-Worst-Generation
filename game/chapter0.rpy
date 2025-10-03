@@ -10,7 +10,7 @@ label splashscreen:
     return
 
 label prologue:
-    scene black  
+    scene black 
     
     play sfxloop "audio/sfx_heart_monitor.ogg" volume 0.05
     pause 0.5
