@@ -28,51 +28,43 @@ init python:
         for piece in placed:
             placed[piece] = False
 
+    correct_slots = {
+        "piece_1": "1",
+        "piece_2": "2",
+        "piece_3": "3",
+        "piece_4": "A",
+        "piece_5": "B",
+        "piece_6": "C",
+        "piece_7": "D",
+        "piece_8": "E",
+        "piece_9": "F"
+    }
+
     # Callback when a piece is dropped
     def drag_placed(drags, drop):
-        if not drop:
-            return
-
         piece = drags[0].drag_name
-        spot = drop.drag_name
+        snap_x = drags[0].x
+        snap_y = drags[0].y 
+        is_correctly_placed = False
 
-        # Example rule: match piece name to a spot
-        # piece_2 → Left Circle, piece_3 → Right Circle, piece_4 → Middle Circle
-        if piece == "piece_1" and spot == "1":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_2" and spot == "2":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_3" and spot == "3":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_4" and spot == "A":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_5" and spot == "B":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_6" and spot == "C":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_7" and spot == "D":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_8" and spot == "E":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        elif piece == "piece_9" and spot == "F":
-            drags[0].snap(drop.x, drop.y)
-            placed[piece] = True
-        else:
-            # Wrong spot → send back where it was
-            drags[0].snap(drags[0].x, drags[0].y)
+        if drop:
+            spot = drop.drag_name
+            if correct_slots.get(piece) == spot:
+                snap_x = drop.x
+                snap_y = drop.y 
+                is_correctly_placed = True
 
-        # Check win condition
+        drags[0].snap(snap_x, snap_y)
+
+        placed[piece] = is_correctly_placed
+
+        if is_correctly_placed:
+            drags[0].draggable = False
+
         if all(placed.values()):
             return "win"
 
+        return
 
 #  <===== Chapter 1 Functions =====
 

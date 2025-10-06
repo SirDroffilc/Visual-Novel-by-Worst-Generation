@@ -264,7 +264,7 @@ screen drag_puzzle:
     
     add Transform("puzzle/frame.png", size=(700, 700)) xalign 0.5 yalign 0.5 alpha 1
 
-    key "rollback" action Return("back")
+    # key "rollback" action Return("back")
     draggroup:
 
         # Pieces
