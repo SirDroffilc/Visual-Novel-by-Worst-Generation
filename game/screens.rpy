@@ -393,17 +393,15 @@ style navigation_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
 screen main_menu():
-
     ## This ensures that any other menu screen is replaced.
     tag menu
     on "show" action Play("music", "audio/bgm_horror_atmosphere.ogg", fadein=2.0)
     on "hide" action Stop("music", fadeout=2.0)
 
     add "gui/mainmenu/main_menu_background.png"
-    add TrackCursor("gui/mainmenu/main_menu_background.png", paramod=100, inverse=True) zoom 1.05
     add "gui/mainmenu/main_menu_eye_background.png"
-    add TrackCursor("gui/mainmenu/main_menu_eye.png", paramod=50, inverse=False)
-    add TrackCursor("gui/mainmenu/main_menu_MC.png", paramod=100, inverse=True) xpos -120 ypos 210
+    add "gui/mainmenu/main_menu_eye.png" xpos 27 ypos 12
+    add "gui/mainmenu/main_menu_MC.png" xpos -120 ypos 210
 
     ## This empty frame darkens the main menu.
     frame:
